@@ -6,6 +6,7 @@ authors = ["Dede Assann <dedeassann20@gmail.com>", "J. Tipan Verella <tverella@t
 
 [tool.poetry.dependencies]
 python = "^3.9"
+seaborn = "^0.11.2"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
