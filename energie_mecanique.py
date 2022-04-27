@@ -1,3 +1,6 @@
+"""
+    Ti program sa a, gen yon sel fonksyon ki util pou kalkule eneji mekanik.
+"""
 import matplotlib.pyplot as plt
 
 
