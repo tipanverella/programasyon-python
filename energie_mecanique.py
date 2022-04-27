@@ -58,7 +58,8 @@ def energie_mecanique() -> float:
         ask4.lower
         demand = int(
             input(
-                "Combien de valeurs supplementaires voulez vous donner pour l'altitude et la vitesse de l'objet?  "
+                "Combien de valeurs supplementaires voulez vous donner pour l'altitude "
+                "et la vitesse de l'objet?  "
             )
         )
         T = []  # liste de temps generee
