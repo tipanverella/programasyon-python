@@ -67,9 +67,9 @@ def energie_mecanique() -> float:
         if ask2 in ("y", "yes", "oui"):
 
             def graph_epp():
-                a =0
-                while a < demand:
-                    a +=1
+                avancement =0
+                while avancement < demand:
+                    avancement +=1
                     hauteur1 = int(input("Entrez l'altitude de l'objet par rapport au sol: "))
                     altitude.append(hauteur1)
                 print(f"Voici la liste des altitudes donnee: {altitude}.")
@@ -94,9 +94,9 @@ def energie_mecanique() -> float:
         if ask3 in ("y", "yes", "oui"):
 
             def graph_ec():
-                a =0
-                while a < demand:
-                    a +=1
+                avancement =0
+                while avancement < demand:
+                    avancement +=1
                     vitesse1 = int(input("Entrez la vitesse de l'objet: "))
                     celerite.append(vitesse1)
                 print(f"Voici la liste de vitesses donnee: {celerite}.")
