@@ -1,48 +1,69 @@
 """Ce programme vous permet de calculer l'energie mecanique d'un objet ou d'une
 personne quelconque.
 """
+import sys
+import csv
+from glob import glob
+from typing import Tuple, List
 import matplotlib.pyplot as plt
 
+GRAVITE = 9.81  # ATTRACTION DE LA PESANTEUR en Newton par Kilogramme
 
-def energie_mecanique() -> float:
-    """Cette fonction vous permet de caculer l'energie
+
+def energie_mecanique() -> Tuple[float, float]:
+    """Cette fonction vous permet de calculer l'energie
     mecanique d'un systeme. Elle vous demande tout d'abord
     la valeur de la masse de l'objet en Kilogramme(Kg), son altitude qui doit etre
-    en metre(masse), puis celle de sa vitesse en metres par seconde(masse/s), ce
+    en metre, puis celle de sa vitesse en metres par seconde(metre/s), ce
     qui lui permettra de calculer l'energie mecanique de l'objet en Joules(J).
     """
     masse = float(input("Donner la valeur de la masse de l'objet en Kilogramme: "))
     hauteur = float(input("Entrez l'altitude de l'objet par rapport au sol en metre: "))
     vitesse = float(input("Entrez la vitesse de l'objet en metre par seconde: "))
-    force_g = 9.81  # ATTRACTION DE LA PESANTEUR en Newton par Kilogramme
+    tip_eneji = ""
+    kantite_eneji = 0.0
     if vitesse == 0:
-        energie_potentielle = masse * force_g * hauteur
-        print(f"L'energie potentielle du systeme est {energie_potentielle} Joules.")
+        kantite_eneji = masse * GRAVITE * hauteur
+        tip_eneji = "Energie Potentielle"
     elif hauteur == 0:
-        energie_cinetique = (masse * (vitesse**2)) / 2
-        print(f"L'energie cinetique du systeme est {energie_cinetique} Joules.")
+        kantite_eneji = (masse * (vitesse**2)) / 2
+        tip_eneji = "Energie Cinetique"
     else:
-        e_mecan = (masse * (vitesse**2)) / 2 + masse * force_g * hauteur
-        print(f"L'energie mecanique du systeme est {e_mecan} Joules.")
+        kantite_eneji = (masse * (vitesse**2)) / 2 + masse * GRAVITE * hauteur
+        tip_eneji = "Energie Mecanique"
+    return tip_eneji, kantite_eneji
 
+
+def li_dokuman(filename: str) -> List[Tuple[float, float, float]]:
+    """
+    Fonksyon sa a li done ki lan dokuman an
+    """
+    with open(filename, "r", encoding="utf-8") as csv_file:
+        reader = csv.DictReader(csv_file)
+        return [
+            (float(row["masse"]), float(row["hauteur"]), float(row["vitesse"]))
+            for row in reader
+        ]
+
+
+def lot_fonksyon():
     ask = input("Voulez-vous un graphique du systeme?: ")
     if ask in ("y", "yes", "oui"):
-        """Cette partie de la fonction permet de construire un graphe en
-        fonction des donnees de la premiere partie, mais pour cela il va devoir
-        vous demander des informations supplementaires, qui lui permettront de
-        de calculer des valeurs d'energies supplementaires, afin d'en creer
-        une liste et ainsi faire le graphique.
-        Les axes a representer seront l'axe des abscisses sur lequel sera
-        represente l'evolution du temps, et l'axe des ordonnees, qui
-        representerales energies en question.
-        """
+        # Cette partie de la fonction permet de construire un graphe en
+        # fonction des donnees de la premiere partie, mais pour cela il va devoir
+        # vous demander des informations supplementaires, qui lui permettront de
+        # de calculer des valeurs d'energies supplementaires, afin d'en creer
+        # une liste et ainsi faire le graphique.
+        # Les axes a representer seront l'axe des abscisses sur lequel sera
+        # represente l'evolution du temps, et l'axe des ordonnees, qui
+        # representera les energies en question.
 
         e_potent = []  # liste d'energie potentielle
         e_cine = []  # liste d'energie cinetique
         e_mecan = []  # liste d'energie mecanique
         altitude = [hauteur]  # liste d'altitude
         celerite = [vitesse]  # liste de vitesseitesse
-        reponse = ["y","yes","oui"]
+        reponse = ["y", "yes", "oui"]
         ask2 = input(
             "Voulez-vous avoir un grapre pour l'energie potentielle de l'objet?"
         )
@@ -76,7 +97,7 @@ def energie_mecanique() -> float:
                     altitude.append(hauteur1)
                 print(f"Voici la liste des altitudes donnee: {altitude}.")
                 for k in altitude:
-                    energie_potentielle = masse * force_g * k
+                    energie_potentielle = masse * GRAVITE * k
                     e_potent.append(energie_potentielle)
                 print(
                     f"Voici la liste des energies potentielles calculees: {e_potent}."
@@ -137,5 +158,47 @@ def energie_mecanique() -> float:
         pass
 
 
+def sistem_mekanik():
+    """
+    Command line interface for a mecanical system
+    """
+    chwa = input(
+        """
+        Eske ou vle:
+        1) kalkule yon eneji mekanik
+        2) etudye yon sistem mekanik
+        q) femen program la
+        ?
+        """
+    )
+    while chwa not in ("1", "2", "q"):
+        chwa = input(
+            """
+            Opsyon yo se 1, 2 ou q!
+            Eske ou vle:
+            1) kalkule yon eneji mekanik
+            2) etudye yon sistem mekanik
+            q) femen program la
+            ?
+            """
+        )
+    if chwa == "q":
+        print("Oke! Map femen program la.")
+        sys.exit()
+    if chwa == "1":
+        # fok li kalkule eneji mekanik lan
+        tip_eneji, kantite_eneji = energie_mecanique()
+        print(f"L'{tip_eneji} du systeme est {kantite_eneji} joules.")
+    elif chwa == "2":
+        # fok li ofri enteraksyon pou konprann yon sistem mekanik
+        non_dokuman_an = input("Banm non dokuman ki gen done sou sistem lan: ")
+        if non_dokuman_an not in glob("*"):
+            print("Dokuman ou a pa la, map jete m!")
+            sys.exit()
+        done_sistem = li_dokuman(non_dokuman_an)
+    else:
+        pass
+
+
 if __name__ == "__main__":
-    energie_mecanique()
+    sistem_mekanik()
