@@ -147,12 +147,9 @@ def systeme_mecanique():
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
         graph_ep, graph_ec, graph_em = etude_syst()
         print(graph_ep, graph_ec, graph_em, "Voila vos graphiques! Bonne analyse!")
-        print(
-            """ Energie mecanique en noir,
-        energie cinetique en vert,
-        energie potentielle en bleu.
-        """
-        )
+        print("Energie mecanique en noir,")
+        print("Energie cinetique en vert,")
+        print("Energie potentielle en bleu.")
     else:
         pass
 
