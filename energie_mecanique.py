@@ -118,26 +118,26 @@ def systeme_mecanique():
     """
     chwa = input(
         """
-        Eske ou vle:
-        1) kalkule yon eneji mekanik
-        2) etudye yon sistem mekanik
-        q) femen program la
-        ?
+        Voulez-vous:
+        1) Calculer une energie mecanique
+        2) Etudier un systeme mecanique
+        q) Fermer la sequence
+           ?
         """
     )
     while chwa not in ("1", "2", "q"):
         chwa = input(
             """
-            Opsyon yo se 1, 2 ou q!
-            Eske ou vle:
-            1) kalkule yon eneji mekanik
-            2) etudye yon sistem mekanik
-            q) femen program la
-            ?
+            Les options disponible sont 1, 2 ou q!
+            Voulez-vous:
+            1) Calculer une energie mecanique
+            2) Etudier un systeme mecanique
+            q) Fermer la sequence
+               ?
             """
         )
     if chwa == "q":
-        print("Oke! Map femen program la.")
+        print("Oke! Fermeture de la sequence.")
         sys.exit()
     if chwa == "1":
         # fok li kalkule eneji mekanik lan
