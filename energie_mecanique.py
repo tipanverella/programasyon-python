@@ -92,7 +92,6 @@ def recueil_donne():
         kantite_eneji = e_potent[i] + e_cine[i]
         e_mecan.append(kantite_eneji)
     return temps, e_potent, e_cine, e_mecan
-    print(e_potent, e_cine, e_mecan)
 
 
 def etude_syst():
