@@ -34,11 +34,11 @@ def energie_mecanique() -> Tuple[float, float]:
     return tip_eneji, kantite_eneji
 
 
-def li_dokuman(filename: str) -> List[Tuple[float, float, float]]:
+def li_dokuman(file_path: str) -> List[Tuple[float, float, float]]:
     """
     Fonksyon sa a li done ki lan dokuman an
     """
-    with open(filename, "r", dialect="excel", encoding="utf-8") as csv_file:
+    with open(file_path, "r", encoding="utf-8") as csv_file:
         reader = csv.DictReader(csv_file)
         return [
             (float(row["masse"]), float(row["hauteur"]), float(row["vitesse"]))
