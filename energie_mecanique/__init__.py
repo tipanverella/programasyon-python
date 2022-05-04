@@ -55,6 +55,14 @@ def li_dokuman(file_path: str) -> List[Tuple[float, float, float]]:
         ]
 
 
+def transfome_struktu_done(liste_triplet: List[Tuple[float, float, float]]):
+    """
+    fonksyon sa a,  transfome yon list triple an 4 list ki gen menm longe ak
+    list triple a
+    """
+    return liste_triplet
+
+
 altitude = []  # liste d'altitude
 celerite = []  # liste de vitesse
 
