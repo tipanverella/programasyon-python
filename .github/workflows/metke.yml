@@ -25,5 +25,4 @@ jobs:
           conda list
           poetry install
           poetry show --tree
-          poetry run black .
-          poetry run pylint energie_mecanique.py 
+          make test

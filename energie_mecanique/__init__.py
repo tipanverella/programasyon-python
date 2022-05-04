@@ -9,23 +9,32 @@ import matplotlib.pyplot as plt
 GRAVITE = 9.81  # ATTRACTION DE LA PESANTEUR en Newton par Kilogramme
 
 
-def energie_mecanique() -> Tuple[float, float]:
-    """Cette fonction vous permet de calculer l'energie
-    mecanique d'un systeme. Elle vous demande tout d'abord
-    la valeur de la masse de l'objet en Kilogramme(Kg), son altitude qui doit etre
-    en metre, puis celle de sa vitesse en metres par seconde(metre/s), ce
-    qui lui permettra de calculer l'energie mecanique de l'objet en Joules(J).
+def done_sistem() -> Tuple[float, float, float]:
+    """
+    Kolekte done lan men utilizate a
     """
     masse = float(input("Donner la valeur de la masse de l'objet en Kilogramme : "))
     hauteur = float(
         input("Entrez l'altitude de l'objet par rapport au sol en metre : ")
     )
     vitesse = float(input("Entrez la vitesse de l'objet en metre par seconde : "))
+    return masse, hauteur, vitesse
+
+
+def energie_mecanique(
+    masse: float, hauteur: float, vitesse: float
+) -> Tuple[str, float]:
+    """Cette fonction vous permet de calculer l'energie
+    mecanique d'un systeme. Elle vous demande tout d'abord
+    la valeur de la masse de l'objet en Kilogramme(Kg), son altitude qui doit etre
+    en metre, puis celle de sa vitesse en metres par seconde(metre/s), ce
+    qui lui permettra de calculer l'energie mecanique de l'objet en Joules(J).
+    """
     kantite_eneji = 0.0
-    if vitesse == 0:
+    if vitesse == 0 and hauteur > 0:
         kantite_eneji = masse * GRAVITE * hauteur
         tip_eneji = "Energie Potentielle"
-    elif hauteur == 0:
+    elif hauteur == 0 and vitesse > 0:
         kantite_eneji = (masse * (vitesse**2)) / 2
         tip_eneji = "Energie Cinetique"
     else:
@@ -141,7 +150,8 @@ def systeme_mecanique():
         sys.exit()
     if chwa == "1":
         # fok li kalkule eneji mekanik lan
-        tip_eneji, kantite_eneji = energie_mecanique()
+        masse, hauteur, vitesse = done_sistem()
+        tip_eneji, kantite_eneji = energie_mecanique(masse, hauteur, vitesse)
         print(f"L'{tip_eneji} du systeme est {kantite_eneji} joules.")
     elif chwa == "2":
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
