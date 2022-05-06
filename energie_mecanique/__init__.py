@@ -63,7 +63,7 @@ def transfome_struktu_done() -> List[Tuple[float, float, float]]:
     list triple a
     """
     rangee = li_dokuman()
-    transposed = List[zip[rangee]]
+    transposed = zip_longest[rangee]
     masse = [transposed[0]]
     hauteur = [transposed[1]]
     vitesse = [transposed[3]]
