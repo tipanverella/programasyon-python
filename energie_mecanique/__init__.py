@@ -2,6 +2,7 @@
 personne quelconque.
 """
 import csv
+from itertools import zip_longest
 import sys
 from typing import Tuple, List
 import matplotlib.pyplot as plt
@@ -62,7 +63,7 @@ def transfome_struktu_done() -> List[Tuple[float, float, float]]:
     list triple a
     """
     rangee = li_dokuman()
-    transposed = [[row[i] for row in rangee] for i in range(4)]
+    transposed = List[zip[rangee]]
     masse = [transposed[0]]
     hauteur = [transposed[1]]
     vitesse = [transposed[3]]
