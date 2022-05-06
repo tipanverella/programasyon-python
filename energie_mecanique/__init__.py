@@ -61,7 +61,10 @@ def transfome_struktu_done(liste_triplet: List[Tuple[float, float, float]]):
     fonksyon sa a,  transfome yon list triple an 4 list ki gen menm longe ak
     list triple a
     """
-    transposed = zip_longest[rangee]
+    liste_triplet = zip(li_dokuman())
+    transposed = [[idx, elem] for idx, elem in enumerate(liste_triplet)]
+    # changement de l'organisation des donnees
+    # du fichier csv a une liste de trois "tuples"
     masse = [transposed[0]]
     hauteur = [transposed[1]]
     vitesse = [transposed[3]]
