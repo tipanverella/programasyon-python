@@ -44,25 +44,23 @@ def energie_mecanique(
     return tip_eneji, kantite_eneji
 
 
-def li_dokuman(file_path:str) -> List[Tuple[float, float, float]]:
+def li_dokuman(file_path: str) -> List[Tuple[float, float, float]]:
     """
     Fonksyon sa a li done ki lan dokuman an
     """
     with open(file_path, "r", encoding="utf-8") as csv_file:
         reader = csv.DictReader(csv_file)
-        rangee = [
+        return [
             (float(row["masse"]), float(row["hauteur"]), float(row["vitesse"]))
             for row in reader
         ]
-        return rangee
 
 
-def transfome_struktu_done() -> List[Tuple[float, float, float]]:
+def transfome_struktu_done(liste_triplet: List[Tuple[float, float, float]]):
     """
     fonksyon sa a,  transfome yon list triple an 4 list ki gen menm longe ak
     list triple a
     """
-    rangee = li_dokuman()
     transposed = zip_longest[rangee]
     masse = [transposed[0]]
     hauteur = [transposed[1]]
