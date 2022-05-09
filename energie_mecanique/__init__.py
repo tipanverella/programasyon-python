@@ -1,4 +1,5 @@
-"""Ce programme vous permet de calculer l'energie mecanique d'un objet ou d'une
+"""
+Ce programme vous permet de calculer l'energie mecanique d'un objet ou d'une
 personne quelconque.
 """
 import csv
@@ -25,7 +26,8 @@ def done_sistem() -> Tuple[float, float, float]:
 def energie_mecanique(
     masse: float, hauteur: float, vitesse: float
 ) -> Tuple[str, float]:
-    """Cette fonction vous permet de calculer l'energie
+    """
+    Cette fonction vous permet de calculer l'energie
     mecanique d'un systeme. Elle vous demande tout d'abord
     la valeur de la masse de l'objet en Kilogramme(Kg), son altitude qui doit etre
     en metre, puis celle de sa vitesse en metres par seconde(metre/s), ce
@@ -56,45 +58,48 @@ def li_dokuman(file_path: str) -> List[Tuple[float, float, float]]:
         ]
 
 
-def transfome_struktu_done(liste_triplet: List[Tuple[float, float, float]]):
+def reformattage_et_calcul(ell: List[Tuple[float, float, float]]):
     """
     fonksyon sa a,  transfome yon list triple an 4 list ki gen menm longe ak
-    list triple a
+    list triple a.
     """
-    liste_triplet = zip(li_dokuman())
-    transposed = [[idx, elem] for idx, elem in enumerate(liste_triplet)]
+    rangee = zip(ell)
     # changement de l'organisation des donnees
-    # du fichier csv a une liste de trois "tuples"
-    masse = [transposed[0]]
-    hauteur = [transposed[1]]
-    vitesse = [transposed[3]]
-    return masse, hauteur, vitesse
+    # du fichier csv en une liste de trois "tuples"...
+    idx = [(idx) for idx in ell]
+    masse = [rangee[0]]
+    hauteur = [rangee[1]]
+    vitesse = [rangee[2]]
+    return idx, masse, hauteur, vitesse
 
-
-def calcul_pour_etude_systeme():
-    """Cette fonction effectue les calculs sur les valeurs donnes pour la
+def calcul_energie_pour_graphes(
+    idx: list, masse: list, hauteur: list, vitesse: list
+):
+    """
+    ette fonction effectue les calculs sur les valeurs donnees pour la
     masse, la hauteur et la vitesse de l'objet en question et renvoie des
     listes d'energie potentielle, cinetique et mecanique.
     """
-    masse, hauteur, vitesse = transfome_struktu_done()
+    # fonction permettant de calculer
+    # les energies potentielle, cinetique et mecanique.
     e_potent = [(i * GRAVITE * k) for i in masse for k in hauteur]
     e_cine = [(i * (v**2) / 2) for i in masse for v in vitesse]
     e_mecan = [(i + g) for i in e_potent for g in e_cine]
-    return e_potent, e_cine, e_mecan
+    return idx, e_potent, e_cine, e_mecan
 
 
-def etude_systeme():
+def etude_systeme(
+    idx: list, e_potent: list, e_cine: list, e_mecan:list
+):
     """
     Cette fonction construis des graphiques.
     """
-    e_potent, e_cine, e_mecan = calcul_pour_etude_systeme()
-    temps = [list(range(e_mecan))]
-    graph_ep = plt.plot(temps, e_potent, "b-", lw=4)
-    graph_ec = plt.plot(temps, e_cine, "g-", lw=4)
-    graph_em = plt.plot(temps, e_mecan, "k-", lw=4)
+    graph_ep = plt.plot(idx, e_potent, "b-", lw=4)
+    graph_ec = plt.plot(idx, e_cine, "g-", lw=4)
+    graph_em = plt.plot(idx, e_mecan, "k-", lw=4)
     plt.title("Evolution des energies")
-    plt.rcParams["figure.figsize"] = (10, 8)
-    plt.xlabel("Temps")
+    plt.rcParams["figure.figsize"] = (20, 15)
+    plt.xlabel("Valeurs indexes")
     plt.ylabel("Energies")
     plt.grid("equal", axis="both")
     plt.show()
@@ -136,6 +141,8 @@ def systeme_mecanique():
         print(f"L'{tip_eneji} du systeme est {kantite_eneji} joules.")
     elif chwa == "2":
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
+        liste_triplet = li_dokuman()
+        masse, hauteur, vitesse = reformattage_et_calcul(ell=)
         graph_ep, graph_ec, graph_em = etude_systeme()
         print(graph_ep, graph_ec, graph_em, "Voila vos graphiques! Bonne analyse!")
         print("Energie mecanique en noir,")
