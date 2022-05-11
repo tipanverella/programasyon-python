@@ -58,19 +58,22 @@ def li_dokuman(file_path: str) -> List[Tuple[float, float, float]]:
         ]
 
 
-def reformattage(ell: List[Tuple[float, float, float]]):
+def transfome_struktu_done(ell: List[Tuple[float, float, float]]):
     """
     fonksyon sa a,  transfome yon list triple an 4 list ki gen menm longe ak
     list triple a.
     """
-    rangee = zip(ell)
-    # changement de l'organisation des donnees
-    # du fichier csv en une liste de trois "tuples"...
-    transposed = [[idx, elem] for idx, elem in rangee]
-    idx = [list(ell)]
-    masse = [transposed[0]]
-    hauteur = [transposed[1]]
-    vitesse = [transposed[2]]
+    if not ell:
+        idx, masse, hauteur, vitesse = [], [], [], []
+    else:
+        idx = [i for i, _ in enumerate(ell)]
+        rangee = list(zip(*ell))
+        # changement de l'organisation des donnees
+        # du fichier csv en une liste de trois "tuples"...
+        masse, hauteur, vitesse = rangee
+        masse = list(masse)
+        hauteur = list(hauteur)
+        vitesse = list(vitesse)
     return idx, masse, hauteur, vitesse
 
 
@@ -139,8 +142,14 @@ def systeme_mecanique():
         print(f"L'{tip_eneji} du systeme est {kantite_eneji} joules.")
     elif chwa == "2":
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
-        # pylint: disable = no-value-for-parameter   # Disables the pylint check for the next line
-        idx, masse, hauteur, vitesse = reformattage()
+        # 1. mande utilizate a non fichye ki gen done yo
+        non_fichye = input("Kote done yo ye? ")
+        # 2. li fichye a ak fonksyon li_dokuman e anrejistre rezulta yo lan yon
+        # list
+        done_list = li_dokuman(non_fichye)
+        # 3. transfome list la ak fonksyon transfome_struktu_done e mete rezulta
+        idx, masse, hauteur, vitesse = transfome_struktu_done(done_list)
+        # yo lan idx, masse, hauteur, vitesse
         idx, e_potent, e_cine, e_mecan = calcul_energie_pour_graphes(
             idx, masse, hauteur, vitesse
         )
