@@ -3,8 +3,10 @@ Ce programme vous permet de calculer l'energie mecanique d'un objet ou d'une
 personne quelconque.
 """
 import csv
-from itertools import zip_longest
+from importlib.resources import files
 import sys
+import glob
+import os
 from typing import Tuple, List
 import matplotlib.pyplot as plt
 
@@ -52,10 +54,12 @@ def li_dokuman(file_path: str) -> List[Tuple[float, float, float]]:
     """
     with open(file_path, "r", encoding="utf-8") as csv_file:
         reader = csv.DictReader(csv_file)
-        return [
-            (float(row["masse"]), float(row["hauteur"]), float(row["vitesse"]))
-            for row in reader
-        ]
+        for row in reader:
+            print(row)
+            return [
+                (float(row["masse"]), float(row["hauteur"]), float(row["vitesse"]))
+                for row in reader
+            ]
 
 
 def transfome_struktu_done(ell: List[Tuple[float, float, float]]):
@@ -143,21 +147,22 @@ def systeme_mecanique():
     elif chwa == "2":
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
         # 1. mande utilizate a non fichye ki gen done yo
-        non_fichye = input("Kote done yo ye? ")
         # 2. li fichye a ak fonksyon li_dokuman e anrejistre rezulta yo lan yon
         # list
-        done_list = li_dokuman(non_fichye)
-        # 3. transfome list la ak fonksyon transfome_struktu_done e mete rezulta
+        file_path = input("Kote done yo ye? ")
+        file = glob.glob(f"{file_path}", recursive = True)
+        done_list = li_dokuman(file_path)
+            # 3. transfome list la ak fonksyon transfome_struktu_done e mete rezulta
         idx, masse, hauteur, vitesse = transfome_struktu_done(done_list)
-        # yo lan idx, masse, hauteur, vitesse
+            # yo lan idx, masse, hauteur, vitesse
         idx, e_potent, e_cine, e_mecan = calcul_energie_pour_graphes(
             idx, masse, hauteur, vitesse
         )
+        print("Energie mecanique en noir,")
+        print("Energie potentielle en bleu.")
+        print("Energie cinetique en vert,")
         graph_ep, graph_ec, graph_em = etude_systeme(idx, e_potent, e_cine, e_mecan)
         print(graph_ep, graph_ec, graph_em, "Voila vos graphiques! Bonne analyse!")
-        print("Energie mecanique en noir,")
-        print("Energie cinetique en vert,")
-        print("Energie potentielle en bleu.")
     else:
         pass
 
