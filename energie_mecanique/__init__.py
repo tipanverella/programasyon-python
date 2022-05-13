@@ -7,6 +7,7 @@ from importlib.resources import files
 import sys
 import glob
 import os
+import pandas as pd
 from typing import Tuple, List
 import matplotlib.pyplot as plt
 
@@ -89,9 +90,22 @@ def calcul_energie_pour_graphes(idx: list, masse: list, hauteur: list, vitesse: 
     """
     # fonction permettant de calculer
     # les energies potentielle, cinetique et mecanique.
-    e_potent = [(i * GRAVITE * k) for i in masse for k in hauteur]
-    e_cine = [(i * (v**2) / 2) for i in masse for v in vitesse]
-    e_mecan = [(i + g) for i in e_potent for g in e_cine]
+    e_potent = []
+    e_cine = []
+    e_mecan = []
+    for m in masse:
+        for h in hauteur:
+            e_potentielle = m*GRAVITE*h
+            e_potent.append(e_potentielle)
+        for v in vitesse:
+            e_cinetique = (m*(v**2))/2
+            e_cine.append(e_cinetique)
+    e_potent.copy()
+    e_cine.copy()
+    for i in idx:
+        e_mecanique = e_potent[i] + e_cine[i]
+        e_mecan.append(e_mecanique)
+    e_mecan.copy()
     return idx, e_potent, e_cine, e_mecan
 
 
@@ -147,14 +161,13 @@ def systeme_mecanique():
     elif chwa == "2":
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
         # 1. mande utilizate a non fichye ki gen done yo
+        emplacement_fichye_a = input("Kote done yo ye? ")
         # 2. li fichye a ak fonksyon li_dokuman e anrejistre rezulta yo lan yon
         # list
-        file_path = input("Kote done yo ye? ")
-        file = glob.glob(f"{file_path}", recursive = True)
-        done_list = li_dokuman(file_path)
-            # 3. transfome list la ak fonksyon transfome_struktu_done e mete rezulta
+        done_list = li_dokuman(emplacement_fichye_a)
+        # 3. transfome list la ak fonksyon transfome_struktu_done e mete rezulta
         idx, masse, hauteur, vitesse = transfome_struktu_done(done_list)
-            # yo lan idx, masse, hauteur, vitesse
+        # yo lan idx, masse, hauteur, vitesse
         idx, e_potent, e_cine, e_mecan = calcul_energie_pour_graphes(
             idx, masse, hauteur, vitesse
         )
