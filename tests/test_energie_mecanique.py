@@ -1,7 +1,18 @@
-from energie_mecanique import energie_mecanique, GRAVITE, transfome_struktu_done
+"""
+Tests sa yo c pou fonction energie_mecanique lan.
+"""
+from energie_mecanique import (
+    energie_mecanique,
+    GRAVITE,
+    transfome_struktu_done,
+    calcul_energie_pour_graphes,
+)
 
 
 def test_energie_mecanique():
+    """
+    Tests sa a c pou fonction energie_mecanique() lan anndan energie mecanique lan
+    """
     masse = 0
     hauteur = 0
     vitesse = 0
@@ -31,7 +42,75 @@ def test_energie_mecanique():
     assert tip_eneji == "Energie Mecanique"
 
 
+def test_calcul_energie_pour_graphes():
+    """
+    Tests sa a c pou fonction calcul_energie_pour_graphes() la.
+    """
+    idx = [0]
+    masse = [0]
+    hauteur = [0]
+    vitesse = [0]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [0.0]
+    assert e_cine == [0.0]
+    assert e_meca == [0.0]
+
+    idx = [0]
+    masse = [1]
+    hauteur = [1]
+    vitesse = [0]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [GRAVITE]
+    assert e_cine == [0.0]
+    assert e_meca == [GRAVITE]
+
+    idx = [0]
+    masse = [1]
+    hauteur = [0]
+    vitesse = [1]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [0.0]
+    assert e_cine == [0.5]
+    assert e_meca == [0.5]
+
+    idx = [0, 1, 2]
+    masse = [1, 1, 1]
+    hauteur = [1, 2, 3]
+    vitesse = [0, 1, 2]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [GRAVITE, 19.62, 29.43]
+    assert e_cine == [0.0, 0.5, 2]
+    assert e_meca == [GRAVITE, 20.12, 31.43]
+
+    idx = []
+    masse = []
+    hauteur = []
+    vitesse = []
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == []
+    assert e_cine == []
+    assert e_meca == []
+
+
 def test_transfome_struktu_done():
+    """
+    Tests sa c pou fonction transfome_struktu_done() a.
+    """
     ell = [(1.0, 2.0, 3.0)]
     idx, masse, hauteur, vitesse = transfome_struktu_done(ell)
     assert idx == [

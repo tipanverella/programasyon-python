@@ -86,16 +86,19 @@ def calcul_energie_pour_graphes(
     idx: list, masse: list, hauteur: list, vitesse: list, /
 ):
     """
-    ette fonction effectue les calculs sur les valeurs donnees pour la
+    Cette fonction effectue les calculs sur les valeurs donnees pour la
     masse, la hauteur et la vitesse de l'objet en question et renvoie des
     listes d'energie potentielle, cinetique et mecanique.
     """
     # fonction permettant de calculer
     # les energies potentielle, cinetique et mecanique.
-    e_pote = [(mass * GRAVITE * haut) for mass, haut in zip(masse, hauteur)]
-    e_cine = [((mass * vit**2) / 2) for mass, vit in zip(masse, vitesse)]
-    e_meca = [(i + g) for i, g in zip(e_pote, e_cine)]
-    return idx, e_pote, e_cine, e_meca
+    e_idx = idx
+    e_pote = [energie_mecanique(_m, _h, 0)[1] for _m, _h in zip(masse, hauteur)]
+    e_cine = [energie_mecanique(_m, 0, _v)[1] for _m, _v in zip(masse, vitesse)]
+    e_meca = [
+        energie_mecanique(_m, _h, _v)[1] for _m, _h, _v in zip(masse, hauteur, vitesse)
+    ]
+    return e_idx, e_pote, e_cine, e_meca
 
 
 def etude_systeme(idx: list, e_potent: list, e_cine: list, e_mecan: list):
@@ -106,7 +109,7 @@ def etude_systeme(idx: list, e_potent: list, e_cine: list, e_mecan: list):
     graph_ec = plt.plot(idx, e_cine, "g-", lw=4)
     graph_em = plt.plot(idx, e_mecan, "k-", lw=4)
     plt.title("Evolution des energies")
-    plt.rcParams["figure.figsize"] = (20, 15)
+    plt.rcParams["figure.figsize"] = (30, 28)
     plt.xlabel("Valeurs indexes")
     plt.ylabel("Energies")
     plt.grid("equal", axis="both")
@@ -151,6 +154,9 @@ def systeme_mecanique():
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
         # 1. mande utilizate a non fichye ki gen done yo
         emplacement_fichye_a = input("Kote done yo ye? ")
+        print("Energie mecanique en noir,")
+        print("Energie potentielle en bleu,")
+        print("Energie cinetique en vert.")
         # 2. li fichye a ak fonksyon li_dokuman e anrejistre rezulta yo lan yon
         # list
         done_list = li_dokuman(emplacement_fichye_a)
@@ -160,9 +166,6 @@ def systeme_mecanique():
         idx, e_potent, e_cine, e_mecan = calcul_energie_pour_graphes(
             idx, masse, hauteur, vitesse
         )
-        print("Energie mecanique en noir,")
-        print("Energie potentielle en bleu.")
-        print("Energie cinetique en vert,")
         graph_ep, graph_ec, graph_em = etude_systeme(idx, e_potent, e_cine, e_mecan)
         print(graph_ep, graph_ec, graph_em, "Voila vos graphiques! Bonne analyse!")
     else:

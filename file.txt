@@ -1,0 +1,87 @@
+file_path = input(": ")
+directories = 
+
+        files = glob.iglob("/c/Users/dedea/git/programasyon-python/*.csv", recursive = True)
+        if file_path not in files:
+            print("Dokuman ou a pa la, map jete m!")
+            sys.exit()
+        else:
+
+
+files = glob.iglob("/c/Users/dedea/git/programasyon-python/*.csv", recursive = True)
+
+
+
+
+def find(path, name):
+    for root, dirs,  files in os.walk(path):
+        if name in files:
+            result = os.path.join(root, name)
+        return result
+
+
+
+name = input("Ki non document ou a? ")
+        file = str(find(file_path, name) )
+
+
+
+            if name in file:
+
+
+
+e_pote = [(mass * GRAVITE * haut) for mass, haut in zip(masse, hauteur)]
+    e_cine = [((mass * vit**2) / 2) for mass, vit in zip(masse, vitesse)]
+    e_meca = [(i + g) for i, g in zip(e_pote, e_cine)]
+
+
+
+
+
+idx = [0]
+    masse = [1]
+    hauteur = [1]
+    vitesse = [0]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [GRAVITE]
+    assert e_cine == [0.0]
+    assert e_meca == [e_pote]
+
+    idx = [0]
+    masse = [1]
+    hauteur = [0]
+    vitesse = [1]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [0.0]
+    assert e_cine == [0.5]
+    assert e_meca == [e_cine]
+
+    idx = [0, 1, 2]
+    masse = [1, 1, 1]
+    hauteur = [1, 2, 3]
+    vitesse = [0, 1, 2]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [GRAVITE, 19.62, 29.43]
+    assert e_cine == [0.0, 0.5, 2]
+    assert e_meca == [GRAVITE, 20.12, 31.43]
+
+    idx = []
+    masse = []
+    hauteur = []
+    vitesse = []
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == []
+    assert e_cine == []
+    assert e_meca == []
