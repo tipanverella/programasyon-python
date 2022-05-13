@@ -1,4 +1,9 @@
-from energie_mecanique import energie_mecanique, GRAVITE, transfome_struktu_done
+from energie_mecanique import (
+    energie_mecanique,
+    GRAVITE,
+    transfome_struktu_done,
+    calcul_energie_pour_graphes,
+)
 
 
 def test_energie_mecanique():
@@ -29,6 +34,20 @@ def test_energie_mecanique():
     tip_eneji, kantite_eneji = energie_mecanique(masse, hauteur, vitesse)
     assert kantite_eneji == 0
     assert tip_eneji == "Energie Mecanique"
+
+
+def test_calcul_energie_pour_graphes():
+    idx = [0]
+    masse = [0]
+    hauteur = [0]
+    vitesse = [0]
+    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
+        idx, masse, hauteur, vitesse
+    )
+    assert e_idx == idx
+    assert e_pote == [0.0]
+    assert e_cine == [0.0]
+    assert e_meca == [0.0]
 
 
 def test_transfome_struktu_done():
