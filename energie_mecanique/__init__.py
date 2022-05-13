@@ -7,8 +7,8 @@ from importlib.resources import files
 import sys
 import glob
 import os
-import pandas as pd
 from typing import Tuple, List
+import pandas as pd
 import matplotlib.pyplot as plt
 
 GRAVITE = 9.81  # ATTRACTION DE LA PESANTEUR en Newton par Kilogramme
@@ -82,7 +82,9 @@ def transfome_struktu_done(ell: List[Tuple[float, float, float]]):
     return idx, masse, hauteur, vitesse
 
 
-def calcul_energie_pour_graphes(idx: list, masse: list, hauteur: list, vitesse: list):
+def calcul_energie_pour_graphes(
+    idx: list, masse: list, hauteur: list, vitesse: list, /
+):
     """
     ette fonction effectue les calculs sur les valeurs donnees pour la
     masse, la hauteur et la vitesse de l'objet en question et renvoie des
@@ -90,23 +92,10 @@ def calcul_energie_pour_graphes(idx: list, masse: list, hauteur: list, vitesse: 
     """
     # fonction permettant de calculer
     # les energies potentielle, cinetique et mecanique.
-    e_potent = []
-    e_cine = []
-    e_mecan = []
-    for m in masse:
-        for h in hauteur:
-            e_potentielle = m*GRAVITE*h
-            e_potent.append(e_potentielle)
-        for v in vitesse:
-            e_cinetique = (m*(v**2))/2
-            e_cine.append(e_cinetique)
-    e_potent.copy()
-    e_cine.copy()
-    for i in idx:
-        e_mecanique = e_potent[i] + e_cine[i]
-        e_mecan.append(e_mecanique)
-    e_mecan.copy()
-    return idx, e_potent, e_cine, e_mecan
+    e_pote = [(mass * GRAVITE * haut) for mass, haut in zip(masse, hauteur)]
+    e_cine = [((mass * vit**2) / 2) for mass, vit in zip(masse, vitesse)]
+    e_meca = [(i + g) for i, g in zip(e_pote, e_cine)]
+    return idx, e_pote, e_cine, e_meca
 
 
 def etude_systeme(idx: list, e_potent: list, e_cine: list, e_mecan: list):
