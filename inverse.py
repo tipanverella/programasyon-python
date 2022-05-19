@@ -16,8 +16,6 @@ def inverse2(X = []):
             abscisse += pas 
             x.append(abscisse)
             y = [(1/valeur) for valeur in x]
-    print("Voici les valeurs calculees pour la liste donnee.")
-    print("Ci-apres la representation graphique de la fonction inverse pour les valeurs d'abscisses donnees.")
     graph = plt.plot(x, y, "k-*", lw=1.5)
     plt.title("Fonction inverse")
     plt.rcParams["figure.figsize"] = (20, 18)
@@ -27,3 +25,5 @@ def inverse2(X = []):
     plt.show()
     plt.close()
     return graph
+
+__all__ = ['inverse', 'inverse1']
