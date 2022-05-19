@@ -33,55 +33,49 @@ name = input("Ki non document ou a? ")
 e_pote = [(mass * GRAVITE * haut) for mass, haut in zip(masse, hauteur)]
     e_cine = [((mass * vit**2) / 2) for mass, vit in zip(masse, vitesse)]
     e_meca = [(i + g) for i, g in zip(e_pote, e_cine)]
+   
+from pytube import Youtube
+def download(url: str):
+    yt = Youtube(r{URL}) 
+    yt.streams.filter(file_extension="mp4")
+    mp4_files.get_by_resolution("360p")
+    mp4_369p_files.download =("C:\Users\dedea\Dropbox\PC\Downloads")
+
+
+if __name__ == "__main__":
+    download()
+
+
+
+
+def chwa():
+    ask = input("Do you wanna give a list of value? 
+    Answer by yes or no.")
+    if ask in ("Yes", "yes"):
+        function = inverse2()
+    else:
+        function = inverse1()
+    return function
+
+if __name__ == "__main__":
+    chwa()
+
+
+
+
+import csv
+import pandas as pd
+def tableur(file_path):
+    with open(file_path, "r", encoding="utf-8") as tsv_file:
+        lecture = pd.read_table(tsv_file, sep = ',')
+    return lecture
 
 
 
 
 
-idx = [0]
-    masse = [1]
-    hauteur = [1]
-    vitesse = [0]
-    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
-        idx, masse, hauteur, vitesse
-    )
-    assert e_idx == idx
-    assert e_pote == [GRAVITE]
-    assert e_cine == [0.0]
-    assert e_meca == [e_pote]
 
-    idx = [0]
-    masse = [1]
-    hauteur = [0]
-    vitesse = [1]
-    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
-        idx, masse, hauteur, vitesse
-    )
-    assert e_idx == idx
-    assert e_pote == [0.0]
-    assert e_cine == [0.5]
-    assert e_meca == [e_cine]
 
-    idx = [0, 1, 2]
-    masse = [1, 1, 1]
-    hauteur = [1, 2, 3]
-    vitesse = [0, 1, 2]
-    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
-        idx, masse, hauteur, vitesse
-    )
-    assert e_idx == idx
-    assert e_pote == [GRAVITE, 19.62, 29.43]
-    assert e_cine == [0.0, 0.5, 2]
-    assert e_meca == [GRAVITE, 20.12, 31.43]
 
-    idx = []
-    masse = []
-    hauteur = []
-    vitesse = []
-    e_idx, e_pote, e_cine, e_meca = calcul_energie_pour_graphes(
-        idx, masse, hauteur, vitesse
-    )
-    assert e_idx == idx
-    assert e_pote == []
-    assert e_cine == []
-    assert e_meca == []
+
+
