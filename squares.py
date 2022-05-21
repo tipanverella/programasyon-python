@@ -1,10 +1,13 @@
-def squares1(x)-> list:
+def squares1(x):
     """
     This function calculate the square value of 
     any number that u give
     """
     carre = [i**2 for i in range(x+1)]
-    return carre
+    X = [i for i in range(x+1)]
+    from graph_function import graphe
+    graph = graphe(X, carre)
+    return carre, graph
 
 
 def squares(x):
@@ -13,6 +16,7 @@ def squares(x):
     ki inferieur a sa ou ba li a, rive nan saw bay la.
     """
     return(x**2)
+
 
 
 def squares2(X)->dict:
