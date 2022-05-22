@@ -1,34 +1,37 @@
-def squares(x):
+"""
+Module sa baw des fonction ki pou kalkule carre nonb,
+e fe graph.
+"""
+
+import matplotlib.pyplot as plt
+
+
+def squares(arg_x):
     """
-    fonksyon sa baw yon list de carre tout valeur 
+    fonksyon sa baw yon list de carre tout valeur
     ki inferieur a sa ou ba li a, rive nan saw bay la.
     """
-    return(x**2)
+    return arg_x**2
 
 
-
-def squares1(x):
+def squares1(arg_x):
     """
-    This function calculate the square value of 
+    This function calculate the square value of
     any number that u give
     """
-    carre = [i**2 for i in range(x+1)]
+    carre = [i**2 for i in range(arg_x + 1)]
     return carre
 
 
-
-def squares2(X)->dict:
+def squares2(param) -> dict:
     """
     Fonksyon sa li menm, baw repons yo sou forme
     dictionnaire. Li etabli correspondance ant valeur yo, ak carre yo.
     """
-    return {x:x**2 for x in range(X+1)}
-
-__all__ = ['squares', 'squares1', 'squares2']
+    return {arg_x: arg_x**2 for arg_x in range(param + 1)}
 
 
-
-def squares3(x):
+def squares3(arg_x):
     """
     Fonksyon sa aksepte yon grenn argument. Li pranl kom yon valeur
     maximal de yon serie de valeur ki pati de 0, pou rive nan valeur
@@ -36,28 +39,30 @@ def squares3(x):
     valeur au carre yo, et li bay yon graphe de valeur sa yo.
     """
 
-    import matplotlib.pyplot as plt
-
-    carre = [i**2 for i in range(x+1)]
+    carre = [i**2 for i in range(arg_x + 1)]
     print(carre)
 
-    pas_abs = x / 10000
-    value_abs = -x
+    pas_abs = arg_x / 10000
+    value_abs = -arg_x
     abscisse = [value_abs]
-    while value_abs <= x:
+    while value_abs <= arg_x:
         value_abs += pas_abs
         abscisse.append(value_abs)
-    
+
     ordonnee = [i**2 for i in abscisse]
 
     graph = plt.plot(abscisse, ordonnee, "k-", lw=2.5)
     plt.title("Courbe d'evolution de la fonction carree")
-    plt.xlabel("x values")
+    plt.xlabel("arg_x values")
     plt.ylabel("squares")
     plt.grid("equal", axis="both", color="k", lw=1)
     plt.rcParams["figure.figsize"] = (6, 6)
-    plt.axis([-x, x, 0, carre[-1]])
+    plt.axis([-arg_x, arg_x, 0, carre[-1]])
     plt.show()
     plt.close()
 
     return graph
+
+
+if __name__ == "__main__":
+    __all__ = ["squares", "squares1", "squares2", "squares3"]

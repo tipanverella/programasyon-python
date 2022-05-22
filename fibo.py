@@ -1,23 +1,29 @@
-def fib(n):  
+"""
+Module sa baw fonksyon pou kalkule suite fibonacci
+"""
+
+
+def fib(arg):
     """
-    Write Fibonacci series up to n.
+    Write Fibonacci series up to arg.
     """
-    a, b = 0, 1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
+    a_value, b_value = 0, 1
+    while a_value < arg:
+        print(a_value, end=" ")
+        a_value, b_value = b_value, a_value + b_value
     print()
 
 
-def fib2(n):
+def fib2(arg):
     """
-    Return Fibonacci series up to n
+    Return Fibonacci series up to arg
     """
     result = []
-    a, b = 0, 1
-    while a < n:
-        result.append(a)
-        a, b = b, a+b
+    a_value, b_value = 0, 1
+    while a_value < arg:
+        result.append(a_value)
+        a_value, b_value = b_value, a_value + b_value
     return result
 
-__all__ = ['fib','fib2']
+
+__all__ = ["fib", "fib2"]

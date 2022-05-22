@@ -1,3 +1,8 @@
+"""
+Module sa baw zouti pou kalkule inverse yon valeur 
+keu ou bali.
+"""
+
 def inverse(x)->float:
     """
     Fonction sa a kalkule inverse nonb ou ba li an
