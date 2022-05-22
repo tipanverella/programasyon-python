@@ -16,6 +16,18 @@ def squares1(x):
     return carre
 
 
+
+def squares2(X)->dict:
+    """
+    Fonksyon sa li menm, baw repons yo sou forme
+    dictionnaire. Li etabli correspondance ant valeur yo, ak carre yo.
+    """
+    return {x:x**2 for x in range(X+1)}
+
+__all__ = ['squares', 'squares1', 'squares2']
+
+
+
 def squares3(x):
     """
     Fonksyon sa aksepte yon grenn argument. Li pranl kom yon valeur
@@ -27,37 +39,25 @@ def squares3(x):
     import matplotlib.pyplot as plt
 
     carre = [i**2 for i in range(x+1)]
+    print(carre)
 
-    pas_abs = x / 100
-    value_abs = 0
+    pas_abs = x / 10000
+    value_abs = -x
     abscisse = [value_abs]
     while value_abs <= x:
         value_abs += pas_abs
         abscisse.append(value_abs)
     
-    abscisse.copy()
     ordonnee = [i**2 for i in abscisse]
 
-    graph = plt.plot(abscisse, ordonnee, "k-*", lw=2.5)
+    graph = plt.plot(abscisse, ordonnee, "k-", lw=2.5)
     plt.title("Courbe d'evolution de la fonction carree")
     plt.xlabel("x values")
     plt.ylabel("squares")
-    plt.grid("equal", axis="both", color="g", lw=2.5)
-    plt.axis("equal" ,xmin=-100, xmax=100, ymin=-100, ymax=100)
-    plt.legend()
+    plt.grid("equal", axis="both", color="k", lw=1)
+    plt.rcParams["figure.figsize"] = (6, 6)
+    plt.axis([-x, x, 0, carre[-1]])
     plt.show()
     plt.close()
 
-    return carre, graph
-
-
-
-
-def squares2(X)->dict:
-    """
-    Fonksyon sa li menm, baw repons yo sou forme
-    dictionnaire. Li etabli correspondance ant valeur yo, ak carre yo.
-    """
-    return {x:x**2 for x in range(X+1)}
-
-__all__ = ['squares', 'squares1', 'squares2']
+    return graph
