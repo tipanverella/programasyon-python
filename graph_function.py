@@ -1,34 +1,41 @@
-from matplotlib import pyplot as plt
+"""
+Module sa baw zouti pouw kalkule carre nonb ou vle a,
+e li ka baw graph avek li tou.
+"""
 
-def graphe(x = []):
+from matplotlib import pyplot as plt
+from typing import List
+
+
+def graph1(param_value) -> list[float]:
     """
     Fonction sa a manipuler done pou ou, de telles
     sortes keu ou kapab fe yon bon courbe ki approchee
     vrai courbe fonction ou an.
     """
 
-    pas1 = x[-1] / 100
-    value1 = x[0]
+    pas1 = param_value / 10000
+    value1 = -param_value
     abscisse = [value1]
-    while value1 != x[-1]:
+    while value1 <= param_value:
         value1 += pas1
         abscisse.append(value1)
-    
+
     return abscisse
 
 
-def graph2(abscisse, ordonnee):
+def graph2(abscisse:list, ordonnee:list):
     """
     Fonction sa fe graphe pou ou.
     """
 
     title = input("Donnez le titre de votre graphique: ")
     x_label = input("Ki tit axe abscisse ou an: ")
-    y_label  = input("Ki tit axe ordonnee ou an: ")
+    y_label = input("Ki tit axe ordonnee ou an: ")
 
-    plt.plot(abscisse, ordonnee, "k-", lw=2.5)
+    graph = plt.plot(abscisse, ordonnee, "k-", lw=2.5)
     plt.title(title)
-    plt.rcParams["figure.figsize"] = (10, 8)
+    plt.rcParams["figure.figsize"] = (8, 8)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid("equal", axis="both", color="g", lw=2.5)
@@ -36,7 +43,8 @@ def graph2(abscisse, ordonnee):
     plt.show()
     plt.close()
 
-    
-    
+    return graph
 
-        
+
+if __name__ == "__main__":
+    __all__ = ["graph1", "graph2"]

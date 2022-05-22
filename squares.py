@@ -4,6 +4,7 @@ e fe graph.
 """
 
 import matplotlib.pyplot as plt
+from graph_function import graph1, graph2
 
 
 def squares(arg_x):
@@ -19,9 +20,17 @@ def squares1(arg_x):
     This function calculate the square value of
     any number that u give
     """
-    carre = [i**2 for i in range(arg_x + 1)]
-    return carre
 
+    carre = [(i**2) for i in range(arg_x + 1)]
+
+    abscisse = graph1(arg_x)
+
+    ordonnee = [(i**2) for i in abscisse]
+
+    graph = graph2(abscisse, ordonnee)
+
+    return carre, graph
+    
 
 def squares2(param) -> dict:
     """
