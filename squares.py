@@ -22,6 +22,7 @@ def squares1(arg_x):
     """
 
     carre = [(i**2) for i in range(arg_x + 1)]
+    print(carre)
 
     abscisse = graph1(arg_x)
 
@@ -29,7 +30,7 @@ def squares1(arg_x):
 
     graph = graph2(abscisse, ordonnee)
 
-    return carre, graph
+    return graph
     
 
 def squares2(param) -> dict:

@@ -15,10 +15,11 @@ def graph1(param_value) -> list[float]:
     """
 
     pas1 = param_value / 10000
-    value1 = -param_value
+    pas = round(pas1, 4)
+    value1 = round(-param_value, 4)
     abscisse = [value1]
     while value1 <= param_value:
-        value1 += pas1
+        value1 += pas
         abscisse.append(value1)
 
     return abscisse
@@ -38,8 +39,7 @@ def graph2(abscisse:list, ordonnee:list):
     plt.rcParams["figure.figsize"] = (8, 8)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
-    plt.grid("equal", axis="both", color="g", lw=2.5)
-    plt.axis("equal", [abscisse[0], abscisse[-1], ordonnee[0], ordonnee[-1]])
+    plt.grid("equal", axis="both", color="k", lw=1)
     plt.show()
     plt.close()
 
