@@ -19,7 +19,17 @@ def inverse1(x):
     Cette fonction permet de calculer toutes les valeurs
     allant de 0 a la valeur donnee en argument.
     """
-    inv = [(1 / value) for value in range(x+1)]
+    inv = []
+    i = 1
+    while i <= x:
+        f_inv = 1 / i
+        tip = type(f_inv)
+        if tip == float:
+            f_inv = round(f_inv, 5)
+            inv.append(f_inv)
+        else:
+            inv.append(f_inv)
+        i += 1
     return inv
 
 
@@ -88,7 +98,7 @@ def inverse3(X):
     resultat = inverse(X)
     print(resultat)
 
-    pas = X / 10000
+    pas = 1 / 1000
     x1 = 0
     x2 = -X
 
@@ -101,7 +111,8 @@ def inverse3(X):
     ordonnee1 = []
     for value in abscisse1:
         ordonnee1.append(1 / value)
-    graph1 = plt.plot(abscisse1, ordonnee1, "k-", lw=2.5)
+
+    graph1 = plt.plot(abscisse1, ordonnee1, "b-", lw=2.5)
 
     #Tracer de la partie negative de la fonction inverse
 
@@ -112,17 +123,23 @@ def inverse3(X):
     ordonnee2 = []
     for value in abscisse2:
         ordonnee2.append(1 / value)
-    graph2 = plt.plot(abscisse2, ordonnee2, "k-", lw=2.5)
+
+    graph2 = plt.plot(abscisse2, ordonnee2, "b-", lw=2.5)
 
     #Tracer de la fonction
 
+    lim_x = 1+X
+    lim_y = 2.71**X
+
     courbe1 = graph1
     courbe2 = graph2
+    
     plt.title("Evolution de la fonction inverse")
     plt.rcParams["figure.figsize"] = (8, 8)
     plt.xlabel("abscisse")
     plt.ylabel("Inverse")
-    plt.grid("equal", axis="both", color="k", lw=1)
+    plt.grid("equal", axis="both", color="k", lw=1.5)
+    plt.axis([-lim_x, lim_x, -lim_y, lim_y])
     plt.show()
     plt.close()
 
