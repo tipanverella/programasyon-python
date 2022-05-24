@@ -1,4 +1,4 @@
-"""
+r"""
 Module sa baw des fonction ki pou kalkule carre nonb,
 e fe graph.
 """

@@ -3,6 +3,8 @@ Module sa baw zouti pou kalkule inverse yon valeur
 keu ou bali.
 """
 
+import matplotlib.pyplot as plt
+from graph_function import graph1, graph2
 def inverse(x)->float:
     """
     Fonction sa a kalkule inverse nonb ou ba li an
@@ -13,8 +15,12 @@ def inverse(x)->float:
 
 
 def inverse1(x):
-    fonction_inverse = 1/x
-    return fonction_inverse
+    """
+    Cette fonction permet de calculer toutes les valeurs
+    allant de 0 a la valeur donnee en argument.
+    """
+    inv = [(1 / value) for value in range(x+1)]
+    return inv
 
 
 
@@ -25,7 +31,6 @@ def inverse2(X):
     ou bali.
     Apre sa, li kapab baw yon graph...
     """
-    import matplotlib.pyplot as plt
     
     x = 0
     pas_abs = X / 1000
@@ -37,7 +42,7 @@ def inverse2(X):
         Inverse.append(inverse)
     
     value_abs1 = -x
-    value_abs2 = 1 / 1000
+    value_abs2 = 1 / 10000
 
     abscisse1 = [value_abs1]
 
@@ -66,6 +71,68 @@ def inverse2(X):
     plt.show()
     plt.close()
     return graph1, graph2
+
+
+
+
+def inverse3(X):
+    """
+    Cette prend un argument de type numerique en entree. Il cacule ainsi
+    la valeur inverse exacte de l'argument pris en entree. Ensuite il
+    calcule une liste de valeur partant de l'oppose de l'argument pris en entree,
+    s'arretant a l'argument lui meme, pouvant ainsi porduire une representation
+    graphique de la fonction pour les valeurs extremales de l'argument et de son
+    oppose.
+    """
+
+    resultat = inverse(X)
+    print(resultat)
+
+    pas = X / 10000
+    x1 = 0
+    x2 = -X
+
+    #Tracer de la partie positive de la fonction inverse
+
+    abscisse1 = []
+    while x1 <= X:
+        x1 += pas
+        abscisse1.append(x1)
+    ordonnee1 = []
+    for value in abscisse1:
+        ordonnee1.append(1 / value)
+    graph1 = plt.plot(abscisse1, ordonnee1, "k-", lw=2.5)
+
+    #Tracer de la partie negative de la fonction inverse
+
+    abscisse2 = []
+    while x2 <= 0:
+        x2 += pas
+        abscisse2.append(x2)
+    ordonnee2 = []
+    for value in abscisse2:
+        ordonnee2.append(1 / value)
+    graph2 = plt.plot(abscisse2, ordonnee2, "k-", lw=2.5)
+
+    #Tracer de la fonction
+
+    courbe1 = graph1
+    courbe2 = graph2
+    plt.title("Evolution de la fonction inverse")
+    plt.rcParams["figure.figsize"] = (8, 8)
+    plt.xlabel("abscisse")
+    plt.ylabel("Inverse")
+    plt.grid("equal", axis="both", color="k", lw=1)
+    plt.show()
+    plt.close()
+
+    return courbe1, courbe2
+
+    
+
+
+
+
 
 
 __all__ = ['inverse', 'inverse1']

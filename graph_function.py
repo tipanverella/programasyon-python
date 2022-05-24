@@ -48,3 +48,4 @@ def graph2(abscisse:list, ordonnee:list):
 
 if __name__ == "__main__":
     __all__ = ["graph1", "graph2"]
+ 
