@@ -8,14 +8,6 @@ print(transposed)
 
 
 
-if x <= 465:
-    pas_abs = x / 1000
-    value_abs1 = -x
-    value_abs2 = 1 / 1000
-elif x <= :
-
-
-
 
 import matplotlib.pyplot as plt
 

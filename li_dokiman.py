@@ -54,3 +54,7 @@ def error():
             break
         except ValueError:
             print("Oops! That was no valid number. Try again...")
+        finally:
+            print("Goodbye!!!")
+
+
