@@ -11,8 +11,10 @@ def li_text(file_path: str):
     """
     Fonksyon sa kapab lire yon dokiman tip text.
     """
-    with open(file_path, "r", encoding="cp1252", sep=" ") as file:
+    with open(file_path, "r", encoding="cp1252") as file:
         lire = file.read()
+        for line in lire:
+            print(line, end=" ")
     return lire
 
 
@@ -55,6 +57,18 @@ def error():
         except ValueError:
             print("Oops! That was no valid number. Try again...")
         finally:
-            print("Goodbye!!!")
+            print("Executing finally clause. Closing the sequence.")
 
 
+def divide(x, y):
+    try:
+        result = x / y
+    except (ZeroDivisionError, TypeError, UnboundLocalError):
+        print("These wasn't valid numbers. Try again...")
+    else:
+        print(f"Result is {result}")
+    finally:
+        print("Executing finally clause")
+
+
+        
