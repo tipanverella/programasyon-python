@@ -5,6 +5,8 @@ keu ou bali.
 
 import matplotlib.pyplot as plt
 from graph_function import graph1, graph2
+
+
 def inverse(x)->float:
     """
     Fonction sa a kalkule inverse nonb ou ba li an
@@ -145,6 +147,21 @@ def inverse3(X):
 
     return courbe1, courbe2
 
+
+def inverse4(param_value):
+
+    inv = inverse(param_value)
+    print(inv)
+
+    abscisse = graph1(param_value)
+    pas = 1 / 1000
+    abscisse1 = []
+    avancement1 = -param_value
+    depart2 = 0
+    while avancement1 <= -pas:
+        avancement1 += pas
+        abscisse1.append(avancement1)
+    ordonnee1 = [(1 / (x)) for x in abscisse1]
     
 
 

@@ -7,19 +7,47 @@ from matplotlib import pyplot as plt
 from typing import List
 
 
-def graph1(param_value) -> list[float]:
+def graph1(param_value, stop_seq:float = None) -> list[float]:
     """
     Fonction sa a manipuler done pou ou, de telles
     sortes keu ou kapab fe yon bon courbe ki approchee
     vrai courbe fonction ou an.
     """
+    
+    #checking the type of the parameter value
 
-    pas1 = param_value / 10000
-    pas = round(pas1, 4)
-    value1 = round(-param_value, 4)
+    try:
+        do = type(param_value) == int
+        do1 = type(param_value) == list
+    except TypeError:
+        pass
+    
+    #defining the shorter interval between two points
+
+    if do == True:
+        pas = param_value / 10000
+        value1 = round(-param_value, 4)
+    elif do1 == True:
+        pas = (param_value[-1] - param_value[0]) / 10000
+        value1 = round(-param_value[-1], 4)
+    else:
+        raise TypeError
+    
+    #redefining the parameter value
+
+    if type(param_value) == list:
+        param_value = param_value[-1]
+    
+    pas = round(pas, 4)
     abscisse = [value1]
+
     while value1 <= param_value:
-        value1 += pas
+        if stop_seq != None:
+            while value1 <= stop_seq:
+                value1 += pas
+        else:
+            value1 += pas
+        value1 = round(value1, 5)
         abscisse.append(value1)
 
     return abscisse
