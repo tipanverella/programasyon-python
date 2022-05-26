@@ -153,15 +153,22 @@ def inverse4(param_value):
     inv = inverse(param_value)
     print(inv)
 
-    abscisse = graph1(param_value)
-    pas = 1 / 1000
+    
+    pas = (1 / 1000)
     abscisse1 = []
     avancement1 = -param_value
     depart2 = 0
-    while avancement1 <= -pas:
-        avancement1 += pas
-        abscisse1.append(avancement1)
-    ordonnee1 = [(1 / (x)) for x in abscisse1]
+
+    abscisse1 = graph1(-param_value, stop_seq=-pas)
+    abscisse2 = graph1(param_value, start_seq=pas)
+    abscisse1.copy
+    ordonnee1 = [(1 / (value)) for value in abscisse1]
+    ordonnee2 = [(1 / (value1)) for value1 in abscisse2]
+
+    courbe1 = graph2(abscisse1, ordonnee1)
+    courbe2 = graph2(abscisse2, ordonnee2)
+
+    return courbe1, courbe2
     
 
 

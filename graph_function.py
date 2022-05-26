@@ -5,19 +5,19 @@ e li ka baw graph avek li tou.
 
 from matplotlib import pyplot as plt
 from typing import List
+import sys
 
-
-def graph1(param_value, stop_seq:float = None) -> list[float]:
+def graph1(param_value, *, start_seq:float = None, stop_seq:float = None) -> list[float]:
     """
     Fonction sa a manipuler done pou ou, de telles
     sortes keu ou kapab fe yon bon courbe ki approchee
-    vrai courbe fonction ou an.
+    vrai courbe fonction ou vle graf la.
     """
     
     #checking the type of the parameter value
 
     try:
-        do = type(param_value) == int
+        do = type(param_value) == int or float
         do1 = type(param_value) == list
     except TypeError:
         pass
@@ -28,8 +28,12 @@ def graph1(param_value, stop_seq:float = None) -> list[float]:
         pas = param_value / 10000
         value1 = round(-param_value, 4)
     elif do1 == True:
-        pas = (param_value[-1] - param_value[0]) / 10000
-        value1 = round(-param_value[-1], 4)
+        try:
+            pas = (param_value[-1] - param_value[0]) / 10000
+            value1 = round(-param_value[-1], 4)
+        except IndexError:
+            print("Ouppsss....your list doesn't have enough elements.")
+            sys.exit()
     else:
         raise TypeError
     
@@ -39,16 +43,36 @@ def graph1(param_value, stop_seq:float = None) -> list[float]:
         param_value = param_value[-1]
     
     pas = round(pas, 4)
-    abscisse = [value1]
+    abscisse = []
 
-    while value1 <= param_value:
-        if stop_seq != None:
-            while value1 <= stop_seq:
-                value1 += pas
-        else:
+    #nan pati sa nap defini valeur keu lsite abscisse
+    #la ap gen ladann
+
+    if start_seq != None and stop_seq != None:
+        value1 = start_seq
+        while value1 >= start_seq and value1 <= stop_seq:
             value1 += pas
-        value1 = round(value1, 5)
-        abscisse.append(value1)
+            value1 = round(value1, 5)
+            abscisse.append(value1)
+
+    elif start_seq != None and stop_seq == None:
+        value1 = start_seq
+        while value1 <= param_value:
+            value1 += pas
+            value1 = round(value1, 5)
+            abscisse.append(value1)
+
+    elif start_seq == None and stop_seq != None:
+        while value1 <= stop_seq:
+            value1 += pas
+            value1 = round(value1, 5)
+            abscisse.append(value1)
+
+    else:
+        while value1 <= param_value:
+            value1 += pas
+            value1 = round(value1, 5)
+            abscisse.append(value1)
 
     return abscisse
 
