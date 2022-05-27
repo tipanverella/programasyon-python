@@ -6,6 +6,7 @@ import sys
 from matplotlib import pyplot as plt
 
 
+
 def graph1(
     param_value, *, start_seq: float = None, stop_seq: float = None
 ) -> list[float]:
@@ -73,6 +74,7 @@ def graph1(
             abscisse.append(value1)
 
     return abscisse
+
 
 
 def graph2(

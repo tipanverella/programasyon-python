@@ -5,6 +5,7 @@
         "076923.python-image-preview",
         "ms-python.vscode-pylance",
         "rororobby.panda-lang",
-        "yy0931.mplstyle"
+        "yy0931.mplstyle",
+        "ms-vscode.makefile-tools"
     ]
 }

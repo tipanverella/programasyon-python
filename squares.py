@@ -3,7 +3,7 @@ Module sa baw des fonction ki pou kalkule carre nonb,
 e fe graph.
 """
 
-import matplotlib.pyplot as plt
+
 from graph_function import graph1, graph2
 
 
@@ -31,7 +31,7 @@ def squares1(arg_x):
     graph = graph2(abscisse, ordonnee)
 
     return graph
-    
+
 
 def squares2(param) -> dict:
     """
@@ -41,37 +41,40 @@ def squares2(param) -> dict:
     return {arg_x: arg_x**2 for arg_x in range(param + 1)}
 
 
-def squares3(arg_x):
+def squares3(param_value):
     """
-    Fonksyon sa aksepte yon grenn argument. Li pranl kom yon valeur
-    maximal de yon serie de valeur ki pati de 0, pou rive nan valeur
-    ou bay la. Li fe kalkil carre yo sou li, li remet ou yon lis de
-    valeur au carre yo, et li bay yon graphe de valeur sa yo.
+    Fonksyon sa kalkule carre quelque soit valeur,
+    ou liste de valeur keu ou bali.
+    Et li remet ou valeur ou liste de carre a ainsi que yon graphe.
     """
 
-    carre = [i**2 for i in range(arg_x + 1)]
+    # Verification du type de donnee a l'entree
+
+    try:
+        do1 = isinstance(param_value, int or float)
+        do2 = isinstance(param_value, list)
+    except TypeError:
+        print("Ouppsss....that was no valid entry!")
+
+    # Calcul du carre...
+
+    if do1:
+        carre = param_value**2
+    elif do2:
+        carre = [(value**2) for value in param_value]
+    else:
+        pass
     print(carre)
 
-    pas_abs = arg_x / 10000
-    value_abs = -arg_x
-    abscisse = [value_abs]
-    while value_abs <= arg_x:
-        value_abs += pas_abs
-        abscisse.append(value_abs)
+    # Mise en place du graphe
 
-    ordonnee = [i**2 for i in abscisse]
+    abscisse = graph1(param_value[-1])
 
-    graph = plt.plot(abscisse, ordonnee, "k-", lw=2.5)
-    plt.title("Courbe d'evolution de la fonction carree")
-    plt.xlabel("arg_x values")
-    plt.ylabel("squares")
-    plt.grid("equal", axis="both", color="k", lw=1)
-    plt.rcParams["figure.figsize"] = (6, 6)
-    plt.axis([-arg_x, arg_x, 0, carre[-1]])
-    plt.show()
-    plt.close()
+    ordonnee = [(value**2) for value in abscisse]
 
-    return graph
+    courbe = graph2(abscisse, ordonnee)
+
+    return courbe
 
 
 if __name__ == "__main__":
