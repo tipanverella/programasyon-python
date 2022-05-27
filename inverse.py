@@ -7,7 +7,6 @@ import sys
 from graph_function import graph1, graph2
 
 
-
 def inverse(value) -> float:
     """
     Fonction sa a kalkule inverse nonb ou ba li an
@@ -35,7 +34,7 @@ def inverse1(value):
     return inv
 
 
-def inverse2(param_value):
+def inverse2(param_value: int or float):
     """
     Fonksyon sa utilize module pou fe graph, li kalkule
     valeur inverse argument ou ba li a, et li remet ou
@@ -50,7 +49,7 @@ def inverse2(param_value):
     else:
         pass
 
-    pas = 1 / 10000
+    pas = 1 / 1000
     abscisse1 = []
 
     abscisse1 = graph1(param_value, stop_seq=-pas)
