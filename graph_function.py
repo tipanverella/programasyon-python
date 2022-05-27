@@ -1,75 +1,76 @@
 """
-Module sa baw zouti pouw kalkule carre nonb ou vle a,
-e li ka baw graph avek li tou.
+Module sa baw zouti pouw fe yon bon graph.
 """
 
-from matplotlib import pyplot as plt
-from typing import List
 import sys
+from matplotlib import pyplot as plt
 
-def graph1(param_value, *, start_seq:float = None, stop_seq:float = None) -> list[float]:
+
+
+def graph1(
+    param_value, *, start_seq: float = None, stop_seq: float = None
+) -> list[float]:
     """
     Fonction sa a manipuler done pou ou, de telles
     sortes keu ou kapab fe yon bon courbe ki approchee
     vrai courbe fonction ou vle graf la.
     """
-    
-    #checking the type of the parameter value
+
+    # checking the type of the parameter value
 
     try:
-        do = type(param_value) == int or float
-        do1 = type(param_value) == list
+        do1 = isinstance(param_value) == int or float
+        do2 = isinstance(param_value) == list
     except TypeError:
         pass
-    
-    #defining the shorter interval between two points
 
-    if do == True:
+    # nap defini pi piti interval ki separe 2 points
+    do1
+    do2
+    
+    if do1 is True:
         pas = param_value / 10000
         value1 = round(-param_value, 4)
-    elif do1 == True:
+    elif do2 is True:
+        param_value = param_value[-1]
         try:
             pas = (param_value[-1] - param_value[0]) / 10000
             value1 = round(-param_value[-1], 4)
         except IndexError:
-            print("Ouppsss....your list doesn't have enough elements.")
+            print("Ouppsss....your list doesn't have enough elements. Kind of empty!")
             sys.exit()
-    else:
-        raise TypeError
-    
-    #redefining the parameter value
 
-    if type(param_value) == list:
-        param_value = param_value[-1]
-    
+    # redefining the parameter value
+
     pas = round(pas, 4)
     abscisse = []
 
-    #nan pati sa nap defini valeur keu lsite abscisse
-    #la ap gen ladann
+    # nan pati sa nap defini valeur keu liste abscisse
+    # la ap gen ladann
 
-    if start_seq != None and stop_seq != None:
+    if start_seq is not None and stop_seq is not None:
         value1 = start_seq
-        while value1 >= start_seq and value1 <= stop_seq:
+        while start_seq <= value1 < stop_seq:
             value1 += pas
             value1 = round(value1, 5)
             abscisse.append(value1)
 
-    elif start_seq != None and stop_seq == None:
+    elif start_seq is not None and stop_seq is None:
         value1 = start_seq
-        while value1 <= param_value:
+        abscisse.append(value1)
+        while value1 < param_value:
             value1 += pas
             value1 = round(value1, 5)
             abscisse.append(value1)
 
-    elif start_seq == None and stop_seq != None:
-        while value1 <= stop_seq:
+    elif start_seq is None and stop_seq is not None:
+        while value1 < stop_seq:
             value1 += pas
             value1 = round(value1, 5)
             abscisse.append(value1)
 
     else:
-        while value1 <= param_value:
+        while value1 < param_value:
             value1 += pas
             value1 = round(value1, 5)
             abscisse.append(value1)
@@ -77,7 +78,10 @@ def graph1(param_value, *, start_seq:float = None, stop_seq:float = None) -> lis
     return abscisse
 
 
-def graph2(abscisse:list, ordonnee:list):
+
+def graph2(
+    abscisse: list, ordonnee: list, abscisse1: list = None, ordonnee1: list = None
+):
     """
     Fonction sa fe graphe pou ou.
     """
@@ -87,6 +91,12 @@ def graph2(abscisse:list, ordonnee:list):
     y_label = input("Ki tit axe ordonnee ou an: ")
 
     graph = plt.plot(abscisse, ordonnee, "k-", lw=2.5)
+
+    if abscisse1 is not None and ordonnee1 is not None:
+        subgraph = plt.plot(abscisse1, ordonnee1, "k-", lw=2.5)
+    else:
+        subgraph = None
+
     plt.title(title)
     plt.rcParams["figure.figsize"] = (8, 8)
     plt.xlabel(x_label)
@@ -95,9 +105,8 @@ def graph2(abscisse:list, ordonnee:list):
     plt.show()
     plt.close()
 
-    return graph
+    return graph, subgraph
 
 
 if __name__ == "__main__":
     __all__ = ["graph1", "graph2"]
- 
