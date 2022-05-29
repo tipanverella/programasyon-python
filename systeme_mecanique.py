@@ -1,3 +1,10 @@
+"""
+Module systeme mecanique
+"""
+
+from energie_mecanique import *
+
+
 def systeme_mecanique():
     """
     Command line interface for a mecanical system
