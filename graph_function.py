@@ -1,10 +1,12 @@
 """
-Module sa baw zouti pouw fe yon bon graph.
+Module1) Module sa baw zouti pouw fe yon bon graph.
+Module2) Module sa permet ou, value_a partir de deux valeurs
+que ou bali, jwenn equation yon droite.
 """
 
 import sys
+from typing import Tuple
 from matplotlib import pyplot as plt
-
 
 
 def graph1(
@@ -76,7 +78,6 @@ def graph1(
     return abscisse
 
 
-
 def graph2(
     abscisse: list, ordonnee: list, abscisse1: list = None, ordonnee1: list = None
 ):
@@ -104,6 +105,58 @@ def graph2(
     plt.close()
 
     return graph, subgraph
+
+
+def find_eq(abscisse: Tuple[int or float], ordonnee: Tuple[int or float]):
+    """
+    fonction sa permet ou jwenn equation yon droite
+    de premye degre seulement
+    """
+
+    coef_directeur = (ordonnee[1] - ordonnee[0]) / (abscisse[1] - abscisse[0])
+
+    value_b = ordonnee[0] - coef_directeur * abscisse[0]
+
+    print(
+        f"L'equation de votre droite est: equation = {coef_directeur}*iter_x + {value_b}"
+    )
+
+
+def reconnaitre_une_eq(
+    value_a: int or float, value_b: int or float, value_c: int or float = None
+):
+    """
+    Fonction sa pemet ou fe graph yon fonction premye ou second degre jus par
+    equation droite la...
+    """
+
+    list_x = [0, 1, 2, 5, 15, 25]
+    iter_x = iter(list_x)
+    ordonnee = []
+
+    ask = int(input("rantre 1 pou premye degre, 2 pour second degre... "))
+
+    iter_i = 0
+
+    if ask == 1:
+        while iter_i < len(list_x):
+            equation = value_a * next(iter_x) + value_b
+            ordonnee.append(equation)
+    elif ask == 2:
+        while iter_i < len(list_x):
+            equation = (
+                value_a * (next(iter_x) ** 2)
+                + 2 * value_a * value_b * next(iter_x)
+                + value_c
+            )
+            ordonnee.append(equation)
+    else:
+        print("Ouppss...that wasn't valid entry.")
+
+    abscisse = graph1(list_x)
+    courbe = graph2(abscisse, ordonnee)
+
+    return courbe
 
 
 if __name__ == "__main__":
