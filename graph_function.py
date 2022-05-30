@@ -8,6 +8,8 @@ import sys
 from typing import List, Tuple
 from matplotlib import pyplot as plt
 
+# MODULE 1
+
 
 def graph1(
     param_value, *, start_seq: float = None, stop_seq: float = None
@@ -112,6 +114,9 @@ def graph2(
     return graph, subgraph1, subgraph2
 
 
+# MODULE 2
+
+
 def find_eq(abscisse: Tuple[int or float], ordonnee: Tuple[int or float]):
     """
     fonction sa permet ou jwenn equation yon droite
@@ -127,7 +132,8 @@ def find_eq(abscisse: Tuple[int or float], ordonnee: Tuple[int or float]):
     )
 
 
-def reconnaitre_une_eq(
+
+def graph_eq(
     value_a: int or float, value_b: int or float, value_c: int or float = None
 ):
     """

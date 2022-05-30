@@ -4,6 +4,7 @@ csv, tabulaire, etc...
 """
 
 import csv
+from os import sep
 import pandas as pd
 
 
@@ -20,19 +21,13 @@ def li_text(file_path: str):
 
 def li_csv(file_path: str, sep: str = ","):
     """
-    Fonction sa a lire dokiman csv.
+    Fonction sa a li dokiman csv.
     """
     with open(file_path, "r", encoding="utf-8") as csv_file:
-        ask = input(
-            "Ekri (tablo) siw vle lil en tablo, (csv) siw vle lil en mode original la. "
-        )
-        if ask == "tablo":
-            lire = pd.read_table(csv_file, sep)
-        else:
-            lire = csv.DictReader(csv_file, sep)
-            for row in lire:
-                print(row)
-    return lire
+        lire = csv.DictReader(csv_file, sep)
+        for row in lire:
+            print(row)
+        return lire
 
 
 def li_tab(file_path: str, sep: str = "|"):
@@ -68,7 +63,4 @@ def divide(x, y):
     else:
         print(f"Result is {result}")
     finally:
-        print("Executing finally clause")
-
-
-        
+        print("Executing finally clause.")

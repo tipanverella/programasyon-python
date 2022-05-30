@@ -7,7 +7,7 @@ import random as rdm
 
 def bay_note(list_non):
     """
-    Fonksyon sa bay elev note au hasard
+    Fonksyon sa bay moun note au hasard
     """
     counter = 0
     note = []
