@@ -73,7 +73,17 @@ def tableur(file_path):
 
 
 
-
+graph_ep = plt.plot(idx, e_potent, "b-", lw=4)
+    graph_ec = plt.plot(idx, e_cine, "g-", lw=4)
+    graph_em = plt.plot(idx, e_mecan, "k-", lw=4)
+    plt.title("Evolution des energies")
+    plt.rcParams["figure.figsize"] = (30, 28)
+    plt.xlabel("Valeurs indexes")
+    plt.ylabel("Energies")
+    plt.grid("equal", axis="both")
+    plt.show()
+    plt.close()
+    return graph_ep, graph_ec, graph_em
 
 
 
