@@ -84,8 +84,3 @@ graph_ep = plt.plot(idx, e_potent, "b-", lw=4)
     plt.show()
     plt.close()
     return graph_ep, graph_ec, graph_em
-
-
-
-
-

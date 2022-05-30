@@ -82,7 +82,7 @@ def graph2(
     arg_a: Tuple[List, List],
     arg_b: Tuple[List, List] = None,
     arg_c: Tuple[List, List] = None,
-    mark = None,
+    mark=None,
 ):
     """
     Fonction sa fe graphe pou ou.
@@ -92,7 +92,6 @@ def graph2(
     x_label = input("Ki tit axe abscisse ou an: ")
     y_label = input("Ki tit axe ordonnee ou an: ")
     clr = ["k-", "b-", "r-", "g-"]
-    
 
     graph = plt.plot(arg_a[0], arg_a[1], clr[0] + mark, lw=2.5)
 
