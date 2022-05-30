@@ -5,7 +5,7 @@ que ou bali, jwenn equation yon droite.
 """
 
 import sys
-from typing import Tuple
+from typing import List, Tuple
 from matplotlib import pyplot as plt
 
 
@@ -79,7 +79,10 @@ def graph1(
 
 
 def graph2(
-    abscisse: list, ordonnee: list, abscisse1: list = None, ordonnee1: list = None
+    arg_a: Tuple[List, List],
+    arg_b: Tuple[List, List] = None,
+    arg_c: Tuple[List, List] = None,
+    mark = None,
 ):
     """
     Fonction sa fe graphe pou ou.
@@ -88,13 +91,16 @@ def graph2(
     title = input("Donnez le titre de votre graphique: ")
     x_label = input("Ki tit axe abscisse ou an: ")
     y_label = input("Ki tit axe ordonnee ou an: ")
+    clr = ["k-", "b-", "r-", "g-"]
+    
 
-    graph = plt.plot(abscisse, ordonnee, "k-", lw=2.5)
+    graph = plt.plot(arg_a[0], arg_a[1], clr[0] + mark, lw=2.5)
 
-    if abscisse1 is not None and ordonnee1 is not None:
-        subgraph = plt.plot(abscisse1, ordonnee1, "k-", lw=2.5)
-    else:
-        subgraph = None
+    if arg_b is not None:
+        subgraph1 = plt.plot(arg_b[0], arg_b[1], clr[1] + mark, lw=2.5)
+
+    if arg_c is not None:
+        subgraph2 = plt.plot(arg_c[0], arg_c[1], clr[2] + mark, lw=2.5)
 
     plt.title(title)
     plt.rcParams["figure.figsize"] = (8, 8)
@@ -104,7 +110,7 @@ def graph2(
     plt.show()
     plt.close()
 
-    return graph, subgraph
+    return graph, subgraph1, subgraph2
 
 
 def find_eq(abscisse: Tuple[int or float], ordonnee: Tuple[int or float]):

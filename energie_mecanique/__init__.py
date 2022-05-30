@@ -3,13 +3,9 @@ Ce programme vous permet de calculer l'energie mecanique d'un objet ou d'une
 personne quelconque.
 """
 import csv
-from importlib.resources import files
 import sys
-import glob
-import os
 from typing import Tuple, List
-import pandas as pd
-import matplotlib.pyplot as plt
+from graph_function import graph2
 
 GRAVITE = 9.81  # ATTRACTION DE LA PESANTEUR en Newton par Kilogramme
 
@@ -105,17 +101,9 @@ def etude_systeme(idx: list, e_potent: list, e_cine: list, e_mecan: list):
     """
     Cette fonction construis des graphiques.
     """
-    graph_ep = plt.plot(idx, e_potent, "b-", lw=4)
-    graph_ec = plt.plot(idx, e_cine, "g-", lw=4)
-    graph_em = plt.plot(idx, e_mecan, "k-", lw=4)
-    plt.title("Evolution des energies")
-    plt.rcParams["figure.figsize"] = (30, 28)
-    plt.xlabel("Valeurs indexes")
-    plt.ylabel("Energies")
-    plt.grid("equal", axis="both")
-    plt.show()
-    plt.close()
-    return graph_ep, graph_ec, graph_em
+    courbe = graph2((idx, e_potent), (idx, e_cine), (idx, e_mecan), mark="*")
+
+    return courbe
 
 
 def systeme_mecanique():
