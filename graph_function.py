@@ -132,7 +132,6 @@ def find_eq(abscisse: Tuple[int or float], ordonnee: Tuple[int or float]):
     )
 
 
-
 def graph_eq(
     value_a: int or float, value_b: int or float, value_c: int or float = None
 ):

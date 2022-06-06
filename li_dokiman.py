@@ -4,7 +4,6 @@ csv, tabulaire, etc...
 """
 
 import csv
-from os import sep
 import pandas as pd
 
 
@@ -55,9 +54,10 @@ def error():
             print("Executing finally clause. Closing the sequence.")
 
 
-def divide(x, y):
+def divide(x_arg, y_arg):
+    " Fonction sa a verifye si yon division posib..."
     try:
-        result = x / y
+        result = x_arg / y_arg
     except (ZeroDivisionError, TypeError, UnboundLocalError):
         print("These wasn't valid numbers. Try again...")
     else:
