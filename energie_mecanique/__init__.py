@@ -2,10 +2,11 @@
 Ce programme vous permet de calculer l'energie mecanique d'un objet ou d'une
 personne quelconque.
 """
+from cProfile import label
 import csv
 import sys
 from typing import Tuple, List
-from graph_function import graph2
+from matplotlib import pyplot as plt
 
 GRAVITE = 9.81  # ATTRACTION DE LA PESANTEUR en Newton par Kilogramme
 
@@ -101,9 +102,19 @@ def etude_systeme(idx: list, e_potent: list, e_cine: list, e_mecan: list):
     """
     Cette fonction construis des graphiques.
     """
-    courbe = graph2((idx, e_potent), (idx, e_cine), (idx, e_mecan), mark="*")
+    plt.figure(figsize=(15,10), layout="constrained")
+    graph_ep = plt.plot(idx, e_potent, "b-", lw=4, label="Energie Potentielle")
+    graph_ec = plt.plot(idx, e_cine, "g-", lw=4, label="Energie Cinetique")
+    graph_em = plt.plot(idx, e_mecan, "k-", lw=4, label="Energie Mecanique")
+    plt.title("Evolution des energies")
+    plt.xlabel("Valeurs indexes")
+    plt.ylabel("Energies")
+    plt.legend()
+    plt.grid("equal", axis="both")
+    plt.show()
+    plt.close()
+    return graph_ep, graph_ec, graph_em
 
-    return courbe
 
 
 def systeme_mecanique():
@@ -142,9 +153,6 @@ def systeme_mecanique():
         # fok li ofri enteraksyon pou konprann yon sistem mekanik
         # 1. mande utilizate a non fichye ki gen done yo
         emplacement_fichye_a = input("Kote done yo ye? ")
-        print("Energie mecanique en noir,")
-        print("Energie potentielle en bleu,")
-        print("Energie cinetique en vert.")
         # 2. li fichye a ak fonksyon li_dokuman e anrejistre rezulta yo lan yon
         # list
         done_list = li_dokuman(emplacement_fichye_a)
@@ -155,9 +163,11 @@ def systeme_mecanique():
             idx, masse, hauteur, vitesse
         )
         graph_ep, graph_ec, graph_em = etude_systeme(idx, e_potent, e_cine, e_mecan)
-        print(graph_ep, graph_ec, graph_em, "Voila vos graphiques! Bonne analyse!")
+        print("Voila vos graphiques! Bonne analyse!")
     else:
         pass
+    
+    return graph_ep, graph_ec, graph_em
 
 
 if __name__ == "__main__":

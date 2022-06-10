@@ -3,7 +3,8 @@ Module sa baw des fonction ki pou kalkule carre nonb,
 e fe graph.
 """
 
-
+import numpy as np
+import matplotlib.pyplot as plt
 from graph_function import graph1, graph2
 
 
@@ -24,11 +25,18 @@ def squares1(arg_x):
     carre = [(i**2) for i in range(arg_x + 1)]
     print(carre)
 
-    abscisse = graph1(arg_x)
+    abscisse = np.linspace(-arg_x, arg_x, 1000)
 
     ordonnee = [(i**2) for i in abscisse]
 
-    graph = graph2(abscisse, ordonnee)
+    graph = plt.plot(abscisse, ordonnee, "b-", label="Quadratic", lw=2.5)
+    plt.title("Fonction carre")
+    plt.xlabel("abscisse")
+    plt.ylabel("carre")
+    plt.legend()
+    plt.show()
+    plt.close()
+
 
     return graph
 
