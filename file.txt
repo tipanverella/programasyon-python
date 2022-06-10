@@ -106,11 +106,11 @@ values = [1, 10, 100]
 
 plt.figure(figsize=(9, 3))
 
-plt.subplot(13)
+plt.subplot(221)
 plt.bar(names, values)
-plt.subplot(13)
+plt.subplot(222)
 plt.scatter(names, values)
-plt.subplot(13)
+plt.subplot(223)
 plt.plot(names, values)
 plt.suptitle('Categorical Plotting')
 plt.show()
