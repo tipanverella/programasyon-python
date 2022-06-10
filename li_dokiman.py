@@ -55,7 +55,7 @@ def error():
 
 
 def divide(x_arg, y_arg):
-    " Fonction sa a verifye si yon division posib..."
+    "Fonction sa a verifye si yon division posib..."
     try:
         result = x_arg / y_arg
     except (ZeroDivisionError, TypeError, UnboundLocalError):
