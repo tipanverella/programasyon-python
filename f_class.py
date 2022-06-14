@@ -42,10 +42,10 @@ class functions:
     b: float = None
     c: float = None
     funct: str = None
-    power: int = 1
-    var = "x"
+    power: int = None
+    var:Variable = "x"
+    globals()[var] = "x"
 
-    @property
     def __post_init__(self):
         self.sort_index = self.power
         
