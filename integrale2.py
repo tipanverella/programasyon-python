@@ -2,41 +2,32 @@
 suite module integrale la
 """
 
-import cmath
 
-from ast import Expression
-from tkinter import Variable
+from f_class import functions
 
 
-function:Expression = "x**2"
+function = functions("Parametric function", "x", 2)
 
-def funct(y:Expression):
-    return y
 
-for index, value in enumerate(function):
-    if value == "x":
-        x:Variable
-        function[index] = x
-    print(function)
+f = function.equation
 
-f = eval(function)
-
-expression = funct(function)
+expression = function
 
 #methode des trapezes
 
-a:int = input()
-b:int = input()
-N:int = input()
+def integrale_f(f):
+    a: int = input()
+    b: int = input()
+    n: int = input()
+    pas = (b-a)/n
+    k = a
+    Somme = []
 
-pas = (b-a)/N
-k = a
+    while k < n:
+        somme = pas*((f(k)+f(k+1))/2)
+        Somme.append(somme)
 
-Somme = []
+    integrale = sum(Somme)
 
-while k < N:
-    somme = pas*((f(k)+f(k+1))/2)
-    Somme.append(somme)
-
-integrale = sum(Somme)
+    return integrale
 

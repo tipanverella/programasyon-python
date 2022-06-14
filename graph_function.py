@@ -26,7 +26,8 @@ def graph1(
         do1 = isinstance(param_value, int or float)
         do2 = isinstance(param_value, list)
     except TypeError:
-        pass
+        print("Ouppsss... that wasn.t valid entry. Try again later.")
+        sys.exit()
 
     # nap defini pi piti interval ki separe 2 points
 
@@ -133,7 +134,7 @@ def find_eq(abscisse: Tuple[int or float], ordonnee: Tuple[int or float]):
 
 
 def graph_eq(
-    value_a: int or float, value_b: int or float, value_c: int or float = None
+    value_a: int or float, value_b: int or float, value_c: int or float = None, power:int=1
 ):
     """
     Fonction sa pemet ou fe graph yon fonction premye ou second degre jus par
@@ -144,15 +145,13 @@ def graph_eq(
     iter_x = iter(list_x)
     ordonnee = []
 
-    ask = int(input("rantre 1 pou premye degre, 2 pour second degre... "))
-
     iter_i = 0
 
-    if ask == 1:
+    if power == 1:
         while iter_i < len(list_x):
             equation = value_a * next(iter_x) + value_b
             ordonnee.append(equation)
-    elif ask == 2:
+    elif power == 2:
         while iter_i < len(list_x):
             equation = (
                 value_a * (next(iter_x) ** 2)
