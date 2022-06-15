@@ -3,6 +3,7 @@ Module sa baw des fonction ki pou kalkule carre nonb,
 e fe graph.
 """
 
+from numbers import Integral
 import numpy as np
 import matplotlib.pyplot as plt
 from graph_function import graph1, graph2
@@ -89,18 +90,14 @@ def squares3(param_value):
 
 def integrale_trap(a:int, b:int, n:int) -> float:
     h = (b-a)/n
-    k = a + 1
-    somme = []
-    while k < n-1:
-        som = (h/2) * (squares(a) + squares(b) + 2*(squares(a+k*h)))
-        somme.append(som)
-        k += 1
-    integrale = sum(somme)
+    moyenne = 0
+    while a < b:
+        moyenne = moyenne + h*((squares(a) + squares(a+h))/2)
+        a += h
+    integrale = round(moyenne, 3)
     return integrale
 
 
 
 if __name__ == "__main__":
     __all__ = ["squares", "squares1", "squares2", "squares3"]
-
-

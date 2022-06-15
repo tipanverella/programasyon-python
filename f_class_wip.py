@@ -3,10 +3,8 @@ Module sa pemet ou kreye objet tip fonksyon.
 """
 
 import ast
-from math import log, cos, sin, exp
 from dataclasses import dataclass, field
 import math
-from operator import add, eq
 from tkinter import Variable
 from typing_extensions import Self
 from graph_function import graph1, graph2
@@ -97,7 +95,7 @@ class functions:
     def eq_func(self):
         equation = type(o_type=self.type, formula=self.eq)
         return equation.eq
-    
+
     def calcul(self, value: float) -> float:
         y = self.eq_func.replace("(x)", str(value))
         z = eval(y)
@@ -105,7 +103,7 @@ class functions:
             z = round(z)
         return f"{self.eq_func} = {z},  for x = {value}"
 
-    def calcul_for_graph(self, value:float) -> float:
+    def calcul_for_graph(self, value: float) -> float:
         y = self.eq_func.replace("(x)", str(value))
         z = eval(y)
         if z - round(z) == 0.0:
@@ -123,20 +121,15 @@ class functions:
         courbe = graph2([abscisse, ordonnee])
         return courbe
 
-    def integrale_trap(self) -> float:
-        a: int = input()
-        b: int = input()
-        n: int = input()
-        pas = (b - a) / n
-        k = a
-        Somme = [float]
-
-        while k <= n:
-            somme = pas * ((self.calcul_for_graph(k) + self.calcul_for_graph(k + 1)) / 2)
-            Somme.append(somme)
-            k += pas
-        integrale:float = sum(Somme)
-
+    def integrale_trap(self, a, b, n) -> float:
+        h = (b - a) / n
+        moyenne = 0
+        while a < b:
+            moyenne = moyenne + h * (
+                (self.calcul_for_graph(a) + self.calcul_for_graph(a + h)) / 2
+            )
+            a += h
+        integrale = round(moyenne, 3)
         return integrale
 
 
@@ -169,13 +162,6 @@ print(d.graph)
 
 
 e = c + d
-#pati __add__ method la pa mache nan klas mwen an
+# pati __add__ method la pa mache nan klas mwen an
 # #bug
 print(e)
-
-
-
-"""
-1) fe methode graph la mache....msuspek problem nan c nan utilisation eq_func an li ye
-2) modifye graph2 pou li pran nom fonksyon an kom params and then map ka use li kom legend()...
-"""
