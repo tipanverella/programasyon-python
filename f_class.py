@@ -81,7 +81,7 @@ class functions:
         Somme = []
 
         while k <= n:
-            somme = pas * ((self.calcul(k) + self.calcul(k + 1)) / 2)
+            somme = pas * ((self.calcul(k) + self.calcul(k + pas)) / 2)
             Somme.append(somme)
             k += pas
         integrale = sum(Somme)

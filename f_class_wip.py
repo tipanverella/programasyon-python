@@ -97,7 +97,7 @@ class functions:
     def eq_func(self):
         equation = type(o_type=self.type, formula=self.eq)
         return equation.eq
-
+    
     def calcul(self, value: float) -> float:
         y = self.eq_func.replace("(x)", str(value))
         z = eval(y)
@@ -105,30 +105,37 @@ class functions:
             z = round(z)
         return f"{self.eq_func} = {z},  for x = {value}"
 
+    def calcul_for_graph(self, value:float) -> float:
+        y = self.eq_func.replace("(x)", str(value))
+        z = eval(y)
+        if z - round(z) == 0.0:
+            z = round(z)
+        return z
+
     @property
     def graph(self):
-        abscisse = graph1(100)
+        "fonction sa a graph quelque soit objet functions* que ou genyen an"
+        abscisse = [elem for elem in graph1(100)]
         ordonnee = []
-        for value in abscisse:
-            imag = self.calcul(value)
+        for elem in abscisse:
+            imag = self.calcul_for_graph(elem)
             ordonnee.append(imag)
         courbe = graph2([abscisse, ordonnee])
-
         return courbe
 
-    def integrale_trap(self):
+    def integrale_trap(self) -> float:
         a: int = input()
         b: int = input()
         n: int = input()
         pas = (b - a) / n
         k = a
-        Somme = []
+        Somme = [float]
 
         while k <= n:
-            somme = pas * ((self.calcul(k) + self.calcul(k + 1)) / 2)
+            somme = pas * ((self.calcul_for_graph(k) + self.calcul_for_graph(k + 1)) / 2)
             Somme.append(somme)
             k += pas
-        integrale = sum(Somme)
+        integrale:float = sum(Somme)
 
         return integrale
 
@@ -154,7 +161,7 @@ c = functions(name="logarithm function", power=1, type="other", eq="log((x))")
 print(c.eq_func)
 print(c.calcul(1))
 
-d = functions(name="exponential function", power=1, type="other", eq="exp((x))")
+d = functions(name="exponential function", power=1, type="other", eq="sin((x))")
 print(d)
 print(d.eq_func)
 print(d.calcul(1))

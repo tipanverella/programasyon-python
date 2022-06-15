@@ -85,5 +85,17 @@ def squares3(param_value):
     return courbe
 
 
+def integrale_trap(a:int, b:int, n:int):
+    pas = (b - a) / n
+    k = a
+    Somme: float = 0
+    while k < n:
+        somme = pas * ((squares(k) + squares(k + pas)) / 2)
+        Somme += somme
+        k += pas
+        
+        return Somme
+
+
 if __name__ == "__main__":
     __all__ = ["squares", "squares1", "squares2", "squares3"]

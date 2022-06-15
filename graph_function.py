@@ -108,6 +108,7 @@ def graph2(
     plt.rcParams["figure.figsize"] = (8, 8)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
+    plt.legend()
     plt.grid("equal", axis="both", color="k", lw=1)
     plt.show()
     plt.close()
