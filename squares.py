@@ -87,13 +87,14 @@ def squares3(param_value):
 
 
 
-def integrale_trap(a:int, b:int, n:int):
+def integrale_trap(a:int, b:int, n:int) -> float:
     h = (b-a)/n
-    k = a+ h
+    k = a + 1
     somme = []
-    while k < n-h:
+    while k < n-1:
         som = (h/2) * (squares(a) + squares(b) + 2*(squares(a+k*h)))
         somme.append(som)
+        k += 1
     integrale = sum(somme)
     return integrale
 
