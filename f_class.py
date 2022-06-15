@@ -3,36 +3,10 @@ Module sa pemet ou kalkule integrale par metod simpson ak trapeze.
 """
 
 import ast
-from email.policy import default
 from math import log, cos, sin, exp
 from dataclasses import dataclass, field
 from tkinter import Variable
 from graph_function import graph1, graph2
-
-
-def exp_funct(function: str, var):
-
-    globals()[var] = None
-    var: Variable = globals()[var]
-
-    if function == "log":
-        function = log()
-        equation_form = log(var)
-
-    if function == "cos":
-        function = cos()
-        equation_form = cos(var)
-
-    if function == "sin":
-        function = sin()
-        equation_form = sin(var)
-
-    if function == "exp":
-        function = exp()
-        equation_form = exp(var)
-
-        return equation_form
-
 
 @dataclass(order=True)
 class functions:
