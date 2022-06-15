@@ -85,24 +85,24 @@ def graph2(
     arg_a: Tuple[List, List],
     arg_b: Tuple[List, List] = None,
     arg_c: Tuple[List, List] = None,
-    mark=None,
 ):
     """
     Fonction sa fe graphe pou ou.
     """
 
     title = input("Donnez le titre de votre graphique: ")
+    label = input("bay non courbe ou a: ")
     x_label = input("Ki tit axe abscisse ou an: ")
     y_label = input("Ki tit axe ordonnee ou an: ")
     clr = ["k-", "b-", "r-", "g-"]
 
-    graph = plt.plot(arg_a[0], arg_a[1], clr[0] + mark, lw=2.5)
+    graph = plt.plot(arg_a[0], arg_a[1], clr[0], lw=2.5, label= label)
 
     if arg_b is not None:
-        subgraph1 = plt.plot(arg_b[0], arg_b[1], clr[1] + mark, lw=2.5)
+        subgraph1 = plt.plot(arg_b[0], arg_b[1], clr[1], lw=2.5)
 
     if arg_c is not None:
-        subgraph2 = plt.plot(arg_c[0], arg_c[1], clr[2] + mark, lw=2.5)
+        subgraph2 = plt.plot(arg_c[0], arg_c[1], clr[2], lw=2.5)
 
     plt.title(title)
     plt.rcParams["figure.figsize"] = (8, 8)

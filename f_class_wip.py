@@ -18,7 +18,7 @@ def find(value, pattern="*"):
     return [x for x in dir(value) if fnmatch(x, pattern)]
 
 
-@dataclass
+@dataclass(order=True)
 class expression:
     var: Variable = None
     expr: ast.Expression = None
@@ -42,7 +42,7 @@ class expression:
         return y
 
 
-@dataclass(frozen=True)
+@dataclass(order=True)
 class type:
     """
     classe sa a kreye objet fonction tankou nenpot expression an, oubyen fonksyon ki utilise fonction ki soti nan module math yo.
@@ -72,32 +72,31 @@ class type:
             pass
 
 
-@dataclass
+@dataclass(order=True, frozen=True)
 class functions:
     sort_index: int = field(init=False, repr=False)
     eq: str
-    name:str = "function"
+    name: str = "function"
     power: int = 1
     type: str = None
-    
 
     def __post_init__(self):
-        self.sort_index = self.power
+        object.__setattr__(self, "sort_index", self.power)
 
     def __str__(self):
         return f"The {self.name}, is a function powered at level {self.power}, which has the equation: y = {self.eq_func}"
-    
-    def __add__(self, other:Self):
-        new_eq:str = self.eq_func + other.eq_func
+
+    def __add__(self, other: Self):
+        new_eq: str = self.eq_func + other.eq_func
         return functions(new_eq)
 
-    def add(self, other:Self):
+    def add(self, other: Self):
         return functions()
-        
+
     @property
     def eq_func(self):
         equation = type(o_type=self.type, formula=self.eq)
-        return equation.eq   
+        return equation.eq
 
     def calcul(self, value: float) -> float:
         y = self.eq_func.replace("(x)", str(value))
@@ -105,12 +104,33 @@ class functions:
         if z - round(z) == 0.0:
             z = round(z)
         return f"{self.eq_func} = {z},  for x = {value}"
-        
-        
 
-    
-    
+    @property
+    def graph(self):
+        abscisse = graph1(100)
+        ordonnee = []
+        for value in abscisse:
+            imag = self.calcul(value)
+            ordonnee.append(imag)
+        courbe = graph2([abscisse, ordonnee])
 
+        return courbe
+
+    def integrale_trap(self):
+        a: int = input()
+        b: int = input()
+        n: int = input()
+        pas = (b - a) / n
+        k = a
+        Somme = []
+
+        while k <= n:
+            somme = pas * ((self.calcul(k) + self.calcul(k + 1)) / 2)
+            Somme.append(somme)
+            k += pas
+        integrale = sum(Somme)
+
+        return integrale
 
 
 y = expression(var="x", pow=2)
@@ -130,15 +150,25 @@ print(b.eq_func)
 print(b.calcul(4))
 
 
-c = functions(name="logarithm function" ,power=1, type="other", eq="log((x))")
+c = functions(name="logarithm function", power=1, type="other", eq="log((x))")
 print(c.eq_func)
 print(c.calcul(1))
 
-d = functions(name="exponential function" ,power=1, type="other", eq="exp((x))")
+d = functions(name="exponential function", power=1, type="other", eq="exp((x))")
 print(d)
 print(d.eq_func)
-print(d.calcul(0))
+print(d.calcul(1))
+print(d.graph)
+
 
 e = c + d
-
+#pati __add__ method la pa mache nan klas mwen an
+# #bug
 print(e)
+
+
+
+"""
+1) fe methode graph la mache....msuspek problem nan c nan utilisation eq_func an li ye
+2) modifye graph2 pou li pran nom fonksyon an kom params and then map ka use li kom legend()...
+"""
