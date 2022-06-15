@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from graph_function import graph1, graph2
 
 
-def squares(arg_x):
+def squares(arg_x) -> float:
     """
     fonksyon sa baw yon list de carre tout valeur
     ki inferieur a sa ou ba li a, rive nan saw bay la.
@@ -85,17 +85,21 @@ def squares3(param_value):
     return courbe
 
 
+
+
 def integrale_trap(a:int, b:int, n:int):
-    pas = (b - a) / n
-    k = a
-    Somme: float = 0
-    while k < n:
-        somme = pas * ((squares(k) + squares(k + pas)) / 2)
-        Somme += somme
-        k += pas
-        
-        return Somme
+    h = (b-a)/n
+    k = a+ h
+    somme = []
+    while k < n-h:
+        som = (h/2) * (squares(a) + squares(b) + 2*(squares(a+k*h)))
+        somme.append(som)
+    integrale = sum(somme)
+    return integrale
+
 
 
 if __name__ == "__main__":
     __all__ = ["squares", "squares1", "squares2", "squares3"]
+
+
