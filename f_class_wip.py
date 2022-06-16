@@ -96,15 +96,15 @@ class Functions:
         new_eq: str = self.eq_func + other.eq_func
         return Functions(new_eq)
 
-    def eq_func(self):
+    def eq_func(self) -> str:
         "returns the equation of the function object"
         equation = Functionmaker(o_type=self.type, formula=self.equat)
-        return equation.eq_exp
+        return f"{equation.eq_exp}"
 
     def calcul(self, value: float) -> float:
         "calculate the image of a function for a given value"
         eq_calcul = f"{self.eq_func}".replace("(x)", str(value))
-        imag = eval(eq_calcul)
+        imag = ast.literal_eval(eq_calcul)
         if imag - round(imag) == 0.0:
             imag = round(imag)
         return f"{self.eq_func} = {z},  for x = {value}"
@@ -113,7 +113,7 @@ class Functions:
         """makes the same calcul as the previous function, but for the
         next function only"""
         calcul_dimag = self.eq_func.replace("(x)", str(value))
-        imag = eval(calcul_dimag)
+        imag = ast.literal_eval(calcul_dimag)
         if imag - round(imag) == 0.0:
             imag = round(imag)
         return imag
