@@ -1,29 +1,33 @@
 """
 Module dessaie
 """
-import matplotlib.pyplot as plt
-from energie_mecanique import li_dokuman
+from math import *
 
-lecture = li_dokuman(file_path="/c/Users/dedea/git/programasyon-python")
-transposed = zip(lecture)
-print(transposed)
+def f(x):
+    "fonction"
+    return 5 - 2*x
 
+def racine(f, x):
+    "fonction racine"
+    if 2*f(x)-1 >= 0:
+        return sqrt(2*f(x)-1)
+    else:
+        return "Non defini!"
 
-VALUE_A = 1 / 1000  # Pour éviter 0
-VALUE_B = 1
-x = []
-y = []
-x1 = []
-y1 = []
-PAS = (VALUE_B - VALUE_A) / 200
-ABSCISSE = VALUE_A
-for k in range(0, 201):  # On fait une seule boucle
-    x.append(ABSCISSE)  # ABSCISSE représente les abscisses à droite de 0
-    y.append(1 / ABSCISSE)
-    x1.append(-ABSCISSE)  # -ABSCISSE représente les abscisses à gauche de 0
-    y1.append(-1 / ABSCISSE)
-    ABSCISSE += PAS
-plt.plot(x, y, x1, y1)
-plt.axis([-1, 1, -10, 10])
-plt.show()
-plt.close()
+def bacteries(n:int, bact:float):
+    "fonction sa alkule nomb bacteries ki  vivan nan yon culture apres yon kantite segond"
+    bacteries_vivantes = 0.96**n*(bact)
+    return bacteries_vivantes
+
+def magnitude(E):
+    "li kalkule magitude yon seisme connaissant kantite energie ki degaje ladann"
+    M = round((log10(E) - 4.8)/ 1.5, 1)   #Energie : E, en joules
+    return M
+
+def age(L):
+    """La scrobicularia plana est un mollusque bivalve qui vit dans la vase des estuaires
+    Cete fonction nous permet de determiner la l'age de ce mollusque en fonction de sa taille.
+    """
+    t = (log(L) - log(37.2260)) / (-0.9789)    #age en annee
+    return t
+
