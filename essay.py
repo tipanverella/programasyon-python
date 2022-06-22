@@ -5,7 +5,7 @@ from math import *
 
 def f(x):
     "fonction"
-    return 5 - 2*x
+    return log(x)/(x**2)
 
 def racine(f, x):
     "fonction racine"
@@ -31,3 +31,32 @@ def age(L):
     t = (log(L) - log(37.2260)) / (-0.9789)    #age en annee
     return t
 
+
+def sol(prec, alpha):
+    x = (alpha)**0.5
+    x = round(x, prec)
+    return f"f(x) = {alpha}, for x = {x}"
+
+def factorielle(n):
+    resultat = 1
+    for i in range(1, n+1):
+        resultat = i * resultat
+    return resultat
+
+def factorielle2(n):
+    if n == 0:
+        resultat = 1
+    else:
+        resultat = n*factorielle2(n-1)
+    return resultat
+
+def combinaison(k, n):
+    if k > n:
+        resultat = False
+    else:
+        resultat = factorielle(n) / (factorielle(k) * (n-k) )
+    return resultat
+
+def nbres_parties(n):
+    "definis le nombre de parties a p elements d'un ensemble a n elements"
+    
