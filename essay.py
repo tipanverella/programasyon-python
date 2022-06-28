@@ -2,6 +2,9 @@
 Module dessaie
 """
 from math import *
+import matplotlib.pyplot as plt
+
+        #Fonctions de reference : logarithme et exponentielle
 
 def f(x):
     "fonction"
@@ -37,6 +40,8 @@ def sol(prec, alpha):
     x = round(x, prec)
     return f"f(x) = {alpha}, for x = {x}"
 
+        #Denombrement
+
 def factorielle(n):
     resultat = 1
     for i in range(1, n+1):
@@ -54,9 +59,39 @@ def combinaison(k, n):
     if k > n:
         resultat = False
     else:
-        resultat = factorielle(n) / (factorielle(k) * (n-k) )
+        resultat = factorielle(n) / (factorielle(k) * factorielle(n-k) )
     return resultat
 
 def nbres_parties(n):
     "definis le nombre de parties a p elements d'un ensemble a n elements"
-    
+    N = 0
+    for k in range(n):
+        N = N + combinaison(k, n)
+    return N
+
+        #Suites et limites
+
+def rangsuite(n):
+    "fonction qui calcule le terme de rang n donne"
+    u = 0
+    for k in range(1, n+1):
+        u = u + 3*k -7
+    return u
+
+def u(n):
+    u = 0
+    for k in range(n):
+        u = u + 2*k + 2
+    return u
+
+def plotu(n):
+    for k in range(n):
+        plt.plot(k, u(k), "r.")
+    plt.show()
+
+
+def v(n):
+    v = 2
+    for k in range(n):
+        v = v + 2*k + 2
+    return v
