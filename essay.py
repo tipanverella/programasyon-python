@@ -95,3 +95,17 @@ def v(n):
     for k in range(n):
         v = v + 2*k + 2
     return v
+
+def cadies(n):
+    a, b, c = 450, 250, 300
+    plt.plot(0, a, "r")
+    plt.plot(0, b, "k")
+    plt.plot(0, c, "b")
+    for k in range(1, n+1):
+        a, b, c = (0.88**k)*a + (0.12**k)*b + (0.02**k)*c, (0.88**k)*b + (0.12**k)*a + (0.02**k)*c, (0.96**k)*c
+        plt.plot(k, a, "r")
+        plt.plot(k, b, "k")
+        plt.plot(k, c, "b")
+    plt.show()
+    plt.close()
+    return a, b, c
