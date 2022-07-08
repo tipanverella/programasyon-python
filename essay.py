@@ -1,6 +1,13 @@
 """
-Module dessaie
+Module d'essai
 """
+# pylint: disable=invalid-name
+# pylint: disable=missing-function-docstring
+# pylint: disable=line-too-long
+# pylint: disable=import-error
+# pylint: disable=wildcard-import, unused-wildcard-import
+# pylint: disable=redefined-builtin
+
 from math import *
 import matplotlib.pyplot as plt
 
