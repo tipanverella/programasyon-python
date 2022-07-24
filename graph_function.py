@@ -3,7 +3,7 @@ Module1) Module sa baw zouti pouw fe yon bon graph.
 Module2) Module sa permet ou, value_a partir de deux valeurs
 que ou bali, jwenn equation yon droite.
 """
-
+# pylint: disable= import-error
 import sys
 from typing import List, Tuple
 from matplotlib import pyplot as plt

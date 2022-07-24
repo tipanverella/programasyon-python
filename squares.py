@@ -2,8 +2,7 @@ r"""
 Module sa baw des fonction ki pou kalkule carre nonb,
 e fe graph.
 """
-
-from numbers import Integral
+# pylint: disable= import-error
 import numpy as np
 import matplotlib.pyplot as plt
 from graph_function import graph1, graph2
