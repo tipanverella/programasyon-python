@@ -6,7 +6,7 @@ Module d'essai
 # pylint: disable=line-too-long
 # pylint: disable=import-error
 # pylint: disable=wildcard-import, unused-wildcard-import
-# pylint: disable=redefined-builtin
+# pylint: disable=redefined-builtin, wrong-import-position
 
 from math import *
 import matplotlib.pyplot as plt
@@ -116,3 +116,47 @@ def cadies(n):
     plt.show()
     plt.close()
     return a, b, c
+
+
+
+
+
+from kivy.app import App
+from kivy.lang import Builder
+from kivy.uix.image import Image
+from kivy.graphics import Rotate
+from kivy.animation import Animation
+from kivy.properties import NumericProperty
+
+Builder.load_string('''                                                                                                                                        
+<Loading>:                                                                                                                                                 
+    canvas.before:                                                                                                                                             
+        PushMatrix                                                                                                                                             
+        Rotate:                                                                                                                                                
+            angle: self.angle                                                                                                                                  
+            axis: (0, 0, 1)                                                                                                                                    
+            origin: self.center                                                                                                                                
+    canvas.after:                                                                                                                                              
+        PopMatrix                                                                                                                                              
+''')
+
+class Loading(Image):
+    angle = NumericProperty(0)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        anim = self.anim()
+        
+              
+    def anim(self):
+        anim = Animation(angle=360)
+        for i in range(5):
+            anim += Animation(angle = -360)
+            anim.repeat = True
+            anim.start(self)
+
+
+class TestApp(App):
+    def build(self):
+        return Loading()
+
+TestApp().run()
