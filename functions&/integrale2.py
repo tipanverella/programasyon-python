@@ -1,7 +1,7 @@
 """
 suite module integrale la
 """
-
+# pylint: disable =missing-function-docstring, invalid-name
 
 from f_class import functions
 
@@ -9,7 +9,7 @@ from f_class import functions
 function = functions("Parametric function", "x", 2)
 
 
-f = function.equation
+f = function.eq_func
 
 expression = function
 
