@@ -14,6 +14,6 @@ star = turtle.Turtle()
 while True:
    star.fd(200)
    star.left(150)
-   if star.pos() == star.position:
+   if star.pos() == star.position():
     break
 turtle.done()

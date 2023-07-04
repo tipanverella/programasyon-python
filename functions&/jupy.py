@@ -23,3 +23,5 @@ def onde(i):
 animation = anim.FuncAnimation(
     figure, onde, frames=256, interval=delta_t * 1000, repeat=False
 )
+plt.show()
+plt.close()

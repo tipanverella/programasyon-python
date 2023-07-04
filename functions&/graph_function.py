@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 
 def graph1(
     param_value, *, start_seq: float = None, stop_seq: float = None
-) -> list[float]:
+) -> List[float]:
     """
     Fonction sa a manipuler done pou ou, de telles
     sortes keu ou kapab fe yon bon courbe ki approchee
@@ -26,7 +26,7 @@ def graph1(
         do1 = isinstance(param_value, int or float)
         do2 = isinstance(param_value, list)
     except TypeError:
-        print("Ouppsss... that wasn.t valid entry. Try again later.")
+        print("Ouppsss... that wasn't a valid entry. Try again later.")
         sys.exit()
 
     # nap defini pi piti interval ki separe 2 points

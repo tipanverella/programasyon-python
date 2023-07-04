@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from tkinter import Variable
 from graph_function import graph1, graph2
 
+
 @dataclass(order=True)
 class functions:
     sort_index: int = field(init=False, repr=False)
@@ -17,12 +18,11 @@ class functions:
     c: float = None
     funct: str = None
     power: int = None
-    var:Variable = "x"
+    var: Variable = "x"
     globals()[var] = "x"
 
     def __post_init__(self):
         self.sort_index = self.power
-        
 
     def __str__(self) -> str:
         return f"The {self.type} function, is a function powered at level {self.power}, which has the equation: y = {self.eq_func}"
@@ -87,7 +87,6 @@ class functions:
         integrale = sum(Somme)
 
         return integrale
-
 
 
 y1 = functions(type="cubic", power=3)

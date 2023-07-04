@@ -102,46 +102,63 @@ def etude_systeme(idx: list, e_potent: list, e_cine: list, e_mecan: list):
     """
     Cette fonction construis des graphiques.
     """
-    plt.figure(figsize=(15,10), layout="constrained")
-    graph_ep = plt.plot(idx, e_potent, "b-", lw=4, label="Energie Potentielle")
-    graph_ec = plt.plot(idx, e_cine, "g-", lw=4, label="Energie Cinetique")
-    graph_em = plt.plot(idx, e_mecan, "k-", lw=4, label="Energie Mecanique")
-    plt.title("Evolution des energies")
-    plt.xlabel("Valeurs indexes")
-    plt.ylabel("Energies")
+    plt.figure(figsize=(15, 10), layout="constrained")
+    plt.title("Evolution de l'energie du systeme")
+
+    plt.subplot(131)
+    graph_ep = plt.plot(idx, e_potent, "b-", lw=4, label="Courbe d'Energie Potentielle")
+    plt.title("Evolution de l'energie potentitelle du systeme")
+    plt.xlabel("Temps t_i")
+    plt.ylabel("Energie Potentielle en Joule")
     plt.legend()
     plt.grid("equal", axis="both")
+
+    plt.subplot(132)
+    graph_ec = plt.plot(idx, e_cine, "g-", lw=4, label="Courbe d'Energie Cinetique")
+    plt.title("Evolution de l'energie cinetique du systeme")
+    plt.xlabel("Temps t_i")
+    plt.ylabel("Energie Cinetique en Joule")
+    plt.legend()
+    plt.grid("equal", axis="both")
+
+    plt.subplot(133)
+    graph_em = plt.plot(idx, e_mecan, "k-", lw=4, label="Courbe d'Energie Mecanique")
+    plt.title("Evolution de l'energie mecanique du systeme")
+    plt.xlabel("Temps t_i")
+    plt.ylabel("Energie Mecanique en Joule")
+    plt.legend()
+    plt.grid("equal", axis="both")
+
     plt.show()
     plt.close()
     return graph_ep, graph_ec, graph_em
 
 
-
 def systeme_mecanique():
     """
-    Command line interface for a mecanical system
+    Command line interface for a mechanical system
     """
     chwa = input(
         """
         Voulez-vous:
         1) Calculer une energie mecanique
         2) Etudier un systeme mecanique
-        q) Fermer la sequence
+        Q) Fermer la sequence (Quit)
            ?
         """
     )
-    while chwa not in ("1", "2", "q"):
+    while chwa not in ("1", "2", "Q"):
         chwa = input(
             """
             Les options disponible sont 1, 2 ou q!
             Voulez-vous:
             1) Calculer une energie mecanique
             2) Etudier un systeme mecanique
-            q) Fermer la sequence
+            Q) Fermer la  (Quit)
                ?
             """
         )
-    if chwa == "q":
+    if chwa == "Q":
         print("Oke! Fermeture de la sequence.")
         sys.exit()
     if chwa == "1":
@@ -164,10 +181,9 @@ def systeme_mecanique():
         )
         graph_ep, graph_ec, graph_em = etude_systeme(idx, e_potent, e_cine, e_mecan)
         print("Voila vos graphiques! Bonne analyse!")
+        return graph_ep, graph_ec, graph_em
     else:
         pass
-    
-    return graph_ep, graph_ec, graph_em
 
 
 if __name__ == "__main__":
